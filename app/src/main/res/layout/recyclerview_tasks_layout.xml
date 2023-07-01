@@ -39,7 +39,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textViewAppointmentDate_REC"
+                    android:id="@+id/textViewTaskDateLIST"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -69,13 +69,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:background="#FFFDD0"
+                    android:background="#8FFFFDD0"
                     android:elevation="0.1dp"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
                     android:text="Title"
                     app:layout_constraintStart_toStartOf="@+id/textViewPatientName_REC"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewAppointmentDate_REC" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTaskDateLIST" />
 
                 <TextView
                     android:id="@+id/textView110"
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:background="#FFFDD0"
+                    android:background="#8FFFFDD0"
                     android:elevation="0.1dp"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:background="#FFFDD0"
+                    android:background="#8FFFFDD0"
                     android:elevation="0.1dp"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"

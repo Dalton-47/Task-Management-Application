@@ -11,12 +11,13 @@
         android:id="@+id/view6"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:background="@drawable/bottom_rounded_square"
+        android:background="@drawable/view_task_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTasks"
         android:layout_width="350dp"
         android:layout_height="600dp"
         app:layout_constraintBottom_toBottomOf="parent"
