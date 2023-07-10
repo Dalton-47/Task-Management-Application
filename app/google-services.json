@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "846525020679",
+    "project_id": "luna-task-manager",
+    "storage_bucket": "luna-task-manager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846525020679:android:173388fa22fd112b3b88a2",
+        "android_client_info": {
+          "package_name": "com.example.luna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846525020679-j1podhcl7gi4mebeaikelbc1vbv2t5n4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.luna",
+            "certificate_hash": "0311c87ae4e9b28b46ef9344fcfdebeaabc54ece"
+          }
+        },
+        {
+          "client_id": "846525020679-tnnivjhnm9qf31g194vc13c2cskbsvgb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk30iWSWulDKqNwBGJDbxz7p11KosWxr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846525020679-tnnivjhnm9qf31g194vc13c2cskbsvgb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
