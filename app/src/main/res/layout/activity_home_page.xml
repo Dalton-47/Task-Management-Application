@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="@+id/view" />
 
     <View
-        android:id="@+id/view5"
+        android:id="@+id/viewNewTask"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="32dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <View
-        android:id="@+id/view7"
+        android:id="@+id/viewSearchTask"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="32dp"
@@ -58,10 +58,10 @@
         android:background="@drawable/rounded_green_background"
         android:elevation="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view5" />
+        app:layout_constraintTop_toBottomOf="@+id/viewNewTask" />
 
     <View
-        android:id="@+id/view8"
+        android:id="@+id/viewMyTrack"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="8dp"
@@ -136,9 +136,9 @@
         android:text="New Task"
         android:textColor="#663300"
         android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
-        app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintStart_toStartOf="@+id/view5" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewNewTask"
+        app:layout_constraintEnd_toEndOf="@+id/viewNewTask"
+        app:layout_constraintStart_toStartOf="@+id/viewNewTask" />
 
     <TextView
         android:id="@+id/textView10"
@@ -149,9 +149,9 @@
         android:text="Search Task"
         android:textColor="#663300"
         android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view7"
-        app:layout_constraintEnd_toEndOf="@+id/view7"
-        app:layout_constraintStart_toStartOf="@+id/view7" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewSearchTask"
+        app:layout_constraintEnd_toEndOf="@+id/viewSearchTask"
+        app:layout_constraintStart_toStartOf="@+id/viewSearchTask" />
 
     <TextView
         android:id="@+id/textView11"
@@ -162,9 +162,9 @@
         android:text="My Track"
         android:textColor="#663300"
         android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view8"
-        app:layout_constraintEnd_toEndOf="@+id/view8"
-        app:layout_constraintStart_toStartOf="@+id/view8" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewMyTrack"
+        app:layout_constraintEnd_toEndOf="@+id/viewMyTrack"
+        app:layout_constraintStart_toStartOf="@+id/viewMyTrack" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -174,8 +174,8 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/add_new"
         android:elevation="5.1dp"
-        app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/view5" />
+        app:layout_constraintStart_toStartOf="@+id/viewNewTask"
+        app:layout_constraintTop_toTopOf="@+id/viewNewTask" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -185,8 +185,8 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/search_new"
         android:elevation="5.1dp"
-        app:layout_constraintStart_toStartOf="@+id/view7"
-        app:layout_constraintTop_toTopOf="@+id/view7" />
+        app:layout_constraintStart_toStartOf="@+id/viewSearchTask"
+        app:layout_constraintTop_toTopOf="@+id/viewSearchTask" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -196,8 +196,8 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/data_report"
         android:elevation="5.1dp"
-        app:layout_constraintStart_toStartOf="@+id/view8"
-        app:layout_constraintTop_toTopOf="@+id/view8" />
+        app:layout_constraintStart_toStartOf="@+id/viewMyTrack"
+        app:layout_constraintTop_toTopOf="@+id/viewMyTrack" />
 
     <TextView
         android:id="@+id/textView9"
@@ -269,7 +269,7 @@
                         android:layout_height="600dp">
 
                         <View
-                            android:id="@+id/view13"
+                            android:id="@+id/viewWorkCategory"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginStart="8dp"
@@ -279,7 +279,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <View
-                            android:id="@+id/view14"
+                            android:id="@+id/viewFitnessCategory"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginTop="8dp"
@@ -295,18 +295,18 @@
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="24dp"
                             android:background="@drawable/workout"
-                            app:layout_constraintStart_toStartOf="@+id/view14"
-                            app:layout_constraintTop_toTopOf="@+id/view14" />
+                            app:layout_constraintStart_toStartOf="@+id/viewFitnessCategory"
+                            app:layout_constraintTop_toTopOf="@+id/viewFitnessCategory" />
 
                         <View
-                            android:id="@+id/view15"
+                            android:id="@+id/viewFamilyCategory"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="16dp"
                             android:background="@drawable/rounded_green_background"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/view13" />
+                            app:layout_constraintTop_toBottomOf="@+id/viewWorkCategory" />
 
                         <ImageView
                             android:id="@+id/imageView12"
@@ -315,18 +315,18 @@
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="24dp"
                             android:background="@drawable/family"
-                            app:layout_constraintStart_toStartOf="@+id/view15"
-                            app:layout_constraintTop_toTopOf="@+id/view15" />
+                            app:layout_constraintStart_toStartOf="@+id/viewFamilyCategory"
+                            app:layout_constraintTop_toTopOf="@+id/viewFamilyCategory" />
 
                         <View
-                            android:id="@+id/view16"
+                            android:id="@+id/viewPersonalCategory"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/rounded_green_background"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/view14" />
+                            app:layout_constraintTop_toBottomOf="@+id/viewFitnessCategory" />
 
                         <ImageView
                             android:id="@+id/imageView13"
@@ -335,18 +335,18 @@
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="24dp"
                             android:background="@drawable/personal"
-                            app:layout_constraintStart_toStartOf="@+id/view16"
-                            app:layout_constraintTop_toTopOf="@+id/view16" />
+                            app:layout_constraintStart_toStartOf="@+id/viewPersonalCategory"
+                            app:layout_constraintTop_toTopOf="@+id/viewPersonalCategory" />
 
                         <View
-                            android:id="@+id/view17"
+                            android:id="@+id/viewFinanceCategory"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="16dp"
                             android:background="@drawable/rounded_green_background"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/view15" />
+                            app:layout_constraintTop_toBottomOf="@+id/viewFamilyCategory" />
 
                         <ImageView
                             android:id="@+id/imageView14"
@@ -355,18 +355,18 @@
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="24dp"
                             android:background="@drawable/finance"
-                            app:layout_constraintStart_toStartOf="@+id/view17"
-                            app:layout_constraintTop_toTopOf="@+id/view17" />
+                            app:layout_constraintStart_toStartOf="@+id/viewFinanceCategory"
+                            app:layout_constraintTop_toTopOf="@+id/viewFinanceCategory" />
 
                         <View
-                            android:id="@+id/view19"
+                            android:id="@+id/viewSharedTaskCategory"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/rounded_green_background"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/view16" />
+                            app:layout_constraintTop_toBottomOf="@+id/viewPersonalCategory" />
 
                         <ImageView
                             android:id="@+id/imageView15"
@@ -375,8 +375,8 @@
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="24dp"
                             android:background="@drawable/shared"
-                            app:layout_constraintStart_toStartOf="@+id/view19"
-                            app:layout_constraintTop_toTopOf="@+id/view19" />
+                            app:layout_constraintStart_toStartOf="@+id/viewSharedTaskCategory"
+                            app:layout_constraintTop_toTopOf="@+id/viewSharedTaskCategory" />
 
                         <TextView
                             android:id="@+id/textView30"
@@ -386,9 +386,9 @@
                             android:text="Work"
                             android:textColor="#663300"
                             android:textSize="22sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/view13"
-                            app:layout_constraintEnd_toEndOf="@+id/view13"
-                            app:layout_constraintStart_toStartOf="@+id/view13" />
+                            app:layout_constraintBottom_toBottomOf="@+id/viewWorkCategory"
+                            app:layout_constraintEnd_toEndOf="@+id/viewWorkCategory"
+                            app:layout_constraintStart_toStartOf="@+id/viewWorkCategory" />
 
                         <ImageView
                             android:id="@+id/imageView8"
@@ -397,8 +397,8 @@
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="24dp"
                             android:background="@drawable/work_icon"
-                            app:layout_constraintStart_toStartOf="@+id/view13"
-                            app:layout_constraintTop_toTopOf="@+id/view13" />
+                            app:layout_constraintStart_toStartOf="@+id/viewWorkCategory"
+                            app:layout_constraintTop_toTopOf="@+id/viewWorkCategory" />
 
                         <TextView
                             android:id="@+id/textView31"
@@ -408,9 +408,9 @@
                             android:text="Fitness"
                             android:textColor="#663300"
                             android:textSize="22sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/view14"
-                            app:layout_constraintEnd_toEndOf="@+id/view14"
-                            app:layout_constraintStart_toStartOf="@+id/view14" />
+                            app:layout_constraintBottom_toBottomOf="@+id/viewFitnessCategory"
+                            app:layout_constraintEnd_toEndOf="@+id/viewFitnessCategory"
+                            app:layout_constraintStart_toStartOf="@+id/viewFitnessCategory" />
 
                         <TextView
                             android:id="@+id/textView32"
@@ -420,9 +420,9 @@
                             android:text="Family"
                             android:textColor="#663300"
                             android:textSize="22sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/view15"
-                            app:layout_constraintEnd_toEndOf="@+id/view15"
-                            app:layout_constraintStart_toStartOf="@+id/view15" />
+                            app:layout_constraintBottom_toBottomOf="@+id/viewFamilyCategory"
+                            app:layout_constraintEnd_toEndOf="@+id/viewFamilyCategory"
+                            app:layout_constraintStart_toStartOf="@+id/viewFamilyCategory" />
 
                         <TextView
                             android:id="@+id/textView33"
@@ -432,9 +432,9 @@
                             android:text="Personal"
                             android:textColor="#663300"
                             android:textSize="22sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/view16"
-                            app:layout_constraintEnd_toEndOf="@+id/view16"
-                            app:layout_constraintStart_toStartOf="@+id/view16" />
+                            app:layout_constraintBottom_toBottomOf="@+id/viewPersonalCategory"
+                            app:layout_constraintEnd_toEndOf="@+id/viewPersonalCategory"
+                            app:layout_constraintStart_toStartOf="@+id/viewPersonalCategory" />
 
                         <TextView
                             android:id="@+id/textView34"
@@ -444,9 +444,9 @@
                             android:text="Finance"
                             android:textColor="#663300"
                             android:textSize="22sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/view17"
-                            app:layout_constraintEnd_toEndOf="@+id/view17"
-                            app:layout_constraintStart_toStartOf="@+id/view17" />
+                            app:layout_constraintBottom_toBottomOf="@+id/viewFinanceCategory"
+                            app:layout_constraintEnd_toEndOf="@+id/viewFinanceCategory"
+                            app:layout_constraintStart_toStartOf="@+id/viewFinanceCategory" />
 
                         <TextView
                             android:id="@+id/textView35"
@@ -456,9 +456,9 @@
                             android:text="Shared Tasks"
                             android:textColor="#663300"
                             android:textSize="22sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/view19"
-                            app:layout_constraintEnd_toEndOf="@+id/view19"
-                            app:layout_constraintStart_toStartOf="@+id/view19" />
+                            app:layout_constraintBottom_toBottomOf="@+id/viewSharedTaskCategory"
+                            app:layout_constraintEnd_toEndOf="@+id/viewSharedTaskCategory"
+                            app:layout_constraintStart_toStartOf="@+id/viewSharedTaskCategory" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </RelativeLayout>
             </LinearLayout>
