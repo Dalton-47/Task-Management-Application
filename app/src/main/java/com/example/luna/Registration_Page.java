@@ -124,7 +124,7 @@ Button btnRegister;
                                     User newUser = new User(username, age, email);
 
                                     // Save the user object to the Firebase Realtime Database
-                                    DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+                                  //  DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
                                     usersRef.child(userId).setValue(newUser)
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
@@ -142,6 +142,7 @@ Button btnRegister;
                                                         // Failed to save user data
                                                         progressbar.setVisibility(View.GONE);
                                                         Toast.makeText(Registration_Page.this, "Failed to save user data", Toast.LENGTH_SHORT).show();
+
                                                     }
                                                 }
                                             });
@@ -156,6 +157,8 @@ Button btnRegister;
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
+                            progressbar.setVisibility(View.GONE);
+                            Toast.makeText(Registration_Page.this, "Retry!", Toast.LENGTH_SHORT).show();
 
                         }
                     });

@@ -38,10 +38,10 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="580dp">
+                    android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName7"
+                        android:id="@+id/editTextCreateTaskTitle"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -52,7 +52,6 @@
                         android:inputType="textMultiLine"
                         android:minHeight="48dp"
                         android:padding="8dp"
-                        android:text="Name"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -66,11 +65,11 @@
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
                         android:text="Title"
-                        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName7"
+                        app:layout_constraintStart_toStartOf="@+id/editTextCreateTaskTitle"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName10"
+                        android:id="@+id/editTextCreateTaskDescription"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -81,7 +80,6 @@
                         android:inputType="textMultiLine"
                         android:minHeight="100dp"
                         android:padding="8dp"
-                        android:text="Name"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -96,20 +94,20 @@
                         android:paddingEnd="5dp"
                         android:text="Description"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
+                        app:layout_constraintTop_toBottomOf="@+id/editTextCreateTaskTitle" />
 
-                    <EditText
-                        android:id="@+id/editTextTextPersonName11"
+                    <TextView
+                        android:id="@+id/textViewCreateTaskDate"
                         android:layout_width="300dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="-6dp"
                         android:background="@drawable/textview_background"
-                        android:ems="10"
-                        android:inputType="textMultiLine"
-                        android:minHeight="48dp"
+                        android:drawableRight="@drawable/baseline_calendar_month_24"
                         android:padding="8dp"
-                        android:text="Name"
+                        android:textAlignment="viewStart"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -122,22 +120,21 @@
                         android:background="#FFFDD0"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
-                        android:text="Date"
+                        android:text="Set Date"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName10" />
+                        app:layout_constraintTop_toBottomOf="@+id/editTextCreateTaskDescription" />
 
-                    <EditText
-                        android:id="@+id/editTextTextPersonName12"
+                    <TextView
+                        android:id="@+id/textViewCreateTaskStartTime"
                         android:layout_width="300dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="-6dp"
                         android:background="@drawable/textview_background"
-                        android:ems="10"
-                        android:inputType="textMultiLine"
-                        android:minHeight="48dp"
+                        android:drawableRight="@drawable/baseline_start_timer_24"
                         android:padding="8dp"
-                        android:text="Name"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -152,20 +149,19 @@
                         android:paddingEnd="5dp"
                         android:text="Start Time"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName11" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewCreateTaskDate" />
 
-                    <EditText
-                        android:id="@+id/editTextTextPersonName13"
+                    <TextView
+                        android:id="@+id/textViewCreateTaskEndTime"
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="-6dp"
                         android:background="@drawable/textview_background"
-                        android:ems="10"
-                        android:inputType="textMultiLine"
-                        android:minHeight="48dp"
+                        android:drawableRight="@drawable/baseline_end_timer_off_24"
                         android:padding="8dp"
-                        android:text="Name"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -180,28 +176,43 @@
                         android:paddingEnd="5dp"
                         android:text="End Time"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName12" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewCreateTaskStartTime" />
 
                     <Spinner
-                        android:id="@+id/spinner"
+                        android:id="@+id/spinnerCreateTaskCategory"
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="16dp"
+                        android:popupBackground="@drawable/textview_background"
+                        android:textAlignment="center"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName13" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewCreateTaskEndTime" />
 
                     <Button
-                        android:id="@+id/button3"
-                        android:layout_width="200dp"
+                        android:id="@+id/buttonCreateTaskSave"
+                        android:layout_width="330dp"
                         android:layout_height="48dp"
                         android:layout_marginTop="16dp"
                         android:background="@drawable/button_background"
                         android:text="Save Task"
                         android:textColor="#FFFDD0"
+                        android:textSize="20sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                        app:layout_constraintTop_toBottomOf="@+id/spinnerCreateTaskCategory" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarSaveTask"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:indeterminateDrawable="@drawable/progressbar_resource"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toTopOf="@+id/buttonCreateTaskSave"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </RelativeLayout>

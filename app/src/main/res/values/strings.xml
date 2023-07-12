@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Luna</string>
+    <string name="nulltext">\'</string>
 </resources>
