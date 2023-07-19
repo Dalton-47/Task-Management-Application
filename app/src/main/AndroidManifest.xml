@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.REQUEST_ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +19,11 @@
 
         <activity
             android:name=".view_tasks_activity"
+            android:exported="true" >
+
+        </activity>
+        <activity
+            android:name=".APIMainActivity"
             android:exported="true" >
 
         </activity>
@@ -52,6 +59,9 @@
             android:exported="true">
 
         </activity>
-    </application>
 
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
 </manifest>

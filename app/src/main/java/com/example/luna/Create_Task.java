@@ -34,6 +34,7 @@ import java.util.Calendar;
 
 public class Create_Task extends AppCompatActivity {
 
+    com.google.api.services.calendar.Calendar mService;
     EditText editTextTaskTitle,editTextTaskDescription;
     Spinner spinnerTaskCategory;
     TextView textViewDate, textViewStartTime, textViewEndTime;
@@ -305,6 +306,8 @@ public class Create_Task extends AppCompatActivity {
                                      //task data will be saved successfully
                                      progressBar.setVisibility(View.GONE);
                                      Toast.makeText(Create_Task.this, "Event Saved Successfully", Toast.LENGTH_SHORT).show();
+
+
                                  }
                                  else {
                                      // Failed to save user data

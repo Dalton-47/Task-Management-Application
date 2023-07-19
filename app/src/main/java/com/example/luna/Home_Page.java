@@ -62,6 +62,9 @@ public class Home_Page extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // constraintLayoutTasks.setVisibility(View.VISIBLE);
+                Intent myIntent = new Intent(Home_Page.this,APIMainActivity.class);
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
             }
         });
 

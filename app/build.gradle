@@ -7,9 +7,13 @@ android {
     namespace 'com.example.luna'
     compileSdk 33
 
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
     defaultConfig {
         applicationId "com.example.luna"
-        minSdk 24
+        minSdk 22
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -30,17 +34,27 @@ android {
 }
 
 dependencies {
-
     implementation platform('com.google.firebase:firebase-bom:32.1.1')
     implementation 'com.google.android.gms:play-services-auth:20.6.0'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.firebase:firebase-auth:22.0.0'
+    implementation 'com.google.firebase:firebase-auth:20.6.0'
     implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
     implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation ('com.google.api-client:google-api-client:1.32.1') {
+        exclude group: 'com.google.guava', module: 'guava-jdk5'
+    }
+    implementation 'com.google.api-client:google-api-client-android:1.32.1'
+    implementation 'com.google.api-client:google-api-client-gson:1.32.1'
+    implementation 'com.google.apis:google-api-services-calendar:v3-rev125-1.20.0'
+    implementation 'com.google.guava:listenablefuture:1.0'
+
 }
