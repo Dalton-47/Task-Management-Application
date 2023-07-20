@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#663300">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="250dp"
+        android:layout_height="500dp"
+        android:background="@drawable/rounded_square"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/viewTaskDialog"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewEventDialog"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="180dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="@+id/viewTaskDialog"
+            app:layout_constraintStart_toStartOf="@+id/viewTaskDialog"
+            app:layout_constraintTop_toTopOf="@+id/viewTaskDialog"
+            app:srcCompat="@drawable/calendar_man_gif" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="200dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="-40dp"
+            android:background="@drawable/events"
+            app:layout_constraintEnd_toEndOf="@+id/viewEventDialog"
+            app:layout_constraintStart_toStartOf="@+id/viewEventDialog"
+            app:layout_constraintTop_toTopOf="@+id/viewEventDialog" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create New Task"
+            android:textColor="#663300"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/viewTaskDialog"
+            app:layout_constraintEnd_toEndOf="@+id/viewTaskDialog"
+            app:layout_constraintStart_toStartOf="@+id/viewTaskDialog"
+            app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create New Event"
+            android:textColor="#663300"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/viewEventDialog"
+            app:layout_constraintEnd_toEndOf="@+id/viewEventDialog"
+            app:layout_constraintStart_toStartOf="@+id/viewEventDialog"
+            app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,12 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission
+        android:name="android.permission.AUTHENTICATE_ACCOUNTS"
+        android:maxSdkVersion="22" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.REQUEST_ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
 
     <application
         android:allowBackup="true"
@@ -18,35 +22,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Luna"
         tools:targetApi="31">
-
-        <activity
-            android:name=".view_tasks_activity"
-            android:exported="true" >
-
-        </activity>
-        <activity
-            android:name=".APIMainActivity"
-            android:exported="true" >
-
-        </activity>
-
-        <activity
-            android:name=".Search_Task"
-            android:exported="true">
-
-        </activity>
-
         <activity
             android:name=".Create_Task"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="false" />
+        <activity
+            android:name=".view_tasks_activity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".APIMainActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Search_Task"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Create_Event"
+            android:exported="true"></activity>
         <activity
             android:name=".Home_Page"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -58,15 +51,14 @@
         </activity>
         <activity
             android:name=".Registration_Page"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDn9x4KJZbxIlUsUbAEpGdf4hJo9zm1rcU"/>
+            android:value="AIzaSyDn9x4KJZbxIlUsUbAEpGdf4hJo9zm1rcU" />
     </application>
+
 </manifest>

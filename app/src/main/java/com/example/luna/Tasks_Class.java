@@ -1,6 +1,6 @@
 package com.example.luna;
 
-public class Tasks {
+public class Tasks_Class {
     String title;
     String description;
     String dueDate;
@@ -8,7 +8,7 @@ public class Tasks {
     String endTime;
     String category;
 
-    public Tasks(String title, String description, String dueDate, String startTime, String endTime, String category) {
+    public Tasks_Class(String title, String description, String dueDate, String startTime, String endTime, String category) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;

@@ -48,6 +48,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation ('com.google.api-client:google-api-client:1.32.1') {
@@ -57,5 +58,9 @@ dependencies {
     implementation 'com.google.api-client:google-api-client-gson:1.32.1'
     implementation 'com.google.apis:google-api-services-calendar:v3-rev125-1.20.0'
     implementation 'com.google.guava:listenablefuture:1.0'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
+
+
 
 }

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wooden_floor"
-    tools:context=".Create_Task">
-
+    tools:context=".Create_Event">
 
     <View
         android:id="@+id/view12"
@@ -42,7 +41,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/editTextCreateTaskTitle"
+                        android:id="@+id/editTextCreateEventTitle"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -66,11 +65,11 @@
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
                         android:text="Title"
-                        app:layout_constraintStart_toStartOf="@+id/editTextCreateTaskTitle"
+                        app:layout_constraintStart_toStartOf="@+id/editTextCreateEventTitle"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editTextCreateTaskDescription"
+                        android:id="@+id/editTextCreateEventDescription"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -95,7 +94,7 @@
                         android:paddingEnd="5dp"
                         android:text="Description"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextCreateTaskTitle" />
+                        app:layout_constraintTop_toBottomOf="@+id/editTextCreateEventTitle" />
 
                     <TextView
                         android:id="@+id/textViewCreateTaskDate"
@@ -123,7 +122,7 @@
                         android:paddingEnd="5dp"
                         android:text="Set Date"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextCreateTaskDescription" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewEventLocation" />
 
                     <TextView
                         android:id="@+id/textViewCreateTaskStartTime"
@@ -152,8 +151,35 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewCreateTaskDate" />
 
+                    <TextView
+                        android:id="@+id/textViewCreateEventEndTime"
+                        android:layout_width="300dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="-6dp"
+                        android:background="@drawable/textview_background"
+                        android:drawableRight="@drawable/baseline_end_timer_off_24"
+                        android:padding="8dp"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#FFFDD0"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="End Time"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewCreateTaskStartTime" />
+
                     <Spinner
-                        android:id="@+id/spinnerCreateTaskCategory"
+                        android:id="@+id/spinnerCreateEventCategory"
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="8dp"
@@ -161,10 +187,10 @@
                         android:popupBackground="@drawable/textview_background"
                         android:textAlignment="center"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewCreateTaskStartTime" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewCreateEventEndTime" />
 
                     <Button
-                        android:id="@+id/buttonCreateTaskSave"
+                        android:id="@+id/buttonCreateEventSave"
                         android:layout_width="330dp"
                         android:layout_height="48dp"
                         android:layout_marginTop="16dp"
@@ -174,7 +200,7 @@
                         android:textSize="20sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/spinnerCreateTaskCategory" />
+                        app:layout_constraintTop_toBottomOf="@+id/spinnerCreateEventCategory" />
 
                     <ProgressBar
                         android:id="@+id/progressBarSaveTask"
@@ -183,10 +209,37 @@
                         android:layout_height="100dp"
                         android:indeterminateDrawable="@drawable/progressbar_resource"
                         android:visibility="gone"
-                        app:layout_constraintBottom_toTopOf="@+id/buttonCreateTaskSave"
+                        app:layout_constraintBottom_toTopOf="@+id/buttonCreateEventSave"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewEventLocation"
+                        android:layout_width="300dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="-6dp"
+                        android:background="@drawable/textview_background"
+                        android:drawableRight="@drawable/baseline_location_on_24"
+                        android:padding="8dp"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#FFFDD0"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="Location"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextCreateEventDescription" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </RelativeLayout>
@@ -199,7 +252,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:elevation="5.1dp"
-        android:text="Create New Task"
+        android:text="Create New Event"
         android:textColor="#FFFDD0"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
