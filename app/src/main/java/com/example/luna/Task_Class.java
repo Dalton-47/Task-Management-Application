@@ -4,14 +4,14 @@ public class Task_Class {
 
     String title;
     String description;
-    String startTimme;
+    String startTime;
     String dueDate;
     String category;
 
-    public Task_Class(String title, String description, String startTimme, String dueDate, String category) {
+    public Task_Class(String title, String description, String startTime, String dueDate, String category) {
         this.title = title;
         this.description = description;
-        this.startTimme = startTimme;
+        this.startTime = startTime;
         this.dueDate = dueDate;
         this.category = category;
     }
@@ -32,12 +32,12 @@ public class Task_Class {
         this.description = description;
     }
 
-    public String getStartTimme() {
-        return startTimme;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setStartTimme(String startTimme) {
-        this.startTimme = startTimme;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
     public String getDueDate() {

@@ -210,18 +210,9 @@ public class Create_Task extends AppCompatActivity {
          Toast.makeText(this, "Choose Task Category", Toast.LENGTH_SHORT).show();
       } else {
          progressBar.setVisibility(View.VISIBLE);
-         Query query = taskReference.orderByChild("dueDate").equalTo(taskDueDate);
-         query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-         });
+         //String title, String description, String startTimme, String dueDate, String category
+         Task_Class taskObj = new Task_Class(taskTitle,taskDescription,taskDueTime,taskDueDate,taskCategory);
       }
    }
 
