@@ -29,12 +29,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -55,6 +51,7 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
     private MapView mapView;
     private Button showMapButton;
     private Dialog mapDialog;
+    String eventLocationName ="";
 
     com.google.api.services.calendar.Calendar mService;
     EditText editTextTaskTitle, editTextTaskDescription;
@@ -63,20 +60,20 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
     Button buttonSaveTask;
     FirebaseAuth userAuth;
     String userId;
-    DatabaseReference taskRef;
-    public String[] categoryArray = {
+    DatabaseReference eventReference;
+    private String[] categoryArray = {
             "Select Category",
             "Work",
             "Fitness",
             "Finance",
             "Personal",
-            "Shared Tasks_Class"
+            "Shared Event_Class"
 
     };
 
     ProgressBar progressBar;
 
-    public String taskTitle = "", taskDescription = "", taskDueDate = "", taskStartTime = "", taskEndTime = "", taskCategory = "";
+    private String eventTitle = "", eventDescription = "", eventDueDate = "", eventStartTime = "", eventEndTime = "", eventCategory = "";
 
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
@@ -112,7 +109,7 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
         assert user != null;
         userId = user.getUid();
 
-        taskRef = FirebaseDatabase.getInstance().getReference("Tasks_Class");
+        eventReference = FirebaseDatabase.getInstance().getReference("Events");
 
         textViewDate = (TextView) this.findViewById(R.id.textViewCreateTaskDate);
         textViewStartTime = (TextView) this.findViewById(R.id.textViewCreateTaskStartTime);
@@ -146,7 +143,7 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
                     //Nothing
                 } else {
                     Toast.makeText(Create_Event.this, "You have Selected " + myText, Toast.LENGTH_SHORT).show();
-                    taskCategory = myText;
+                    eventCategory = myText;
                 }
             }
 
@@ -170,9 +167,28 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        textViewDate.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
-                        taskDueDate = Integer.toString(dayOfMonth) + Integer.toString(month + 1) + Integer.toString(year);
 
+                        String myMonth;
+                        if(month<10)
+                        {
+                            myMonth="0"+Integer.toString(month + 1);
+                        }
+                        else {
+                            myMonth=Integer.toString(month + 1);
+                        }
+
+                        String myDay;
+                        if(dayOfMonth<10)
+                        {
+                            myDay="0"+Integer.toString(dayOfMonth);
+                        }
+                        else {
+                            myDay=Integer.toString(dayOfMonth);
+                        }
+
+                        textViewDate.setText(myDay + "-" + myMonth + "-" + year);
+
+                        eventDueDate = myDay + myMonth + Integer.toString(year);
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -213,7 +229,7 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
                                 }
 
                                 textViewStartTime.setText(myHour + ":" + myMinute + " hours");
-                                taskStartTime = myHour + ":" + myMinute;
+                                eventStartTime = myHour + ":" + myMinute;
 
                             }
                         },
@@ -260,7 +276,7 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
                                 }
 
                                 textViewEndTime.setText(myHour + ":" + myMinute + " hours");
-                                taskEndTime = myHour + ":" + myMinute;
+                                eventEndTime = myHour + ":" + myMinute;
 
                             }
                         },
@@ -357,74 +373,49 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
 
     //end
     private void saveTask() {
-        taskTitle = editTextTaskTitle.getText().toString().trim();
-        taskDescription = editTextTaskDescription.getText().toString().trim();
+        eventTitle = editTextTaskTitle.getText().toString().trim();
+        eventDescription = editTextTaskDescription.getText().toString().trim();
 
 
-        if (taskTitle.isEmpty()) {
+        if (eventTitle.isEmpty()) {
             editTextTaskTitle.setError("Cannot be blank!");
-        } else if (taskDescription.isEmpty()) {
+        } else if (eventDescription.isEmpty()) {
             editTextTaskDescription.setError("Cannot be blank!");
-        } else if (taskStartTime.isEmpty()) {
+        } else if (eventStartTime.isEmpty()) {
             textViewStartTime.setError("Cannot be blank!");
-        } else if (taskEndTime.isEmpty()) {
+        } else if (eventEndTime.isEmpty()) {
             textViewEndTime.setError("Cannot be blank");
-        } else if (taskDueDate.isEmpty()) {
+        } else if (eventDueDate.isEmpty()) {
             textViewDate.setError("Cannot be blank");
-        } else if (taskCategory.isEmpty()) {
+        } else if (eventCategory.isEmpty()) {
             Toast.makeText(this, "Choose Task Category", Toast.LENGTH_SHORT).show();
+        } else if (eventLocationName.isEmpty()) {
+            textViewLocation.setError("Cannot be blank");
         } else {
 
             progressBar.setVisibility(View.VISIBLE);
-            Query query = taskRef.orderByChild("Date").equalTo(taskDueDate);
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
+            Event_Class newEvent = new Event_Class(eventTitle, eventDescription, eventDueDate, eventStartTime, eventEndTime, eventCategory, eventLocationName);
+            eventReference.child(userId).child(eventDueDate).child(eventTitle).setValue(newEvent).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                   /*
-                   if(snapshot.exists())
-                   {
-                      //if the selected date has a pre existing scheduled task
-                      // Toast.makeText(Create_Event.this, "The Date is already Booked", Toast.LENGTH_SHORT).show();
-                      progressBar.setVisibility(View.GONE);
-                       textViewDate.setError("Date is already Scheduled!");
-                   }
-                   else
-                   {
-                   }
-                       */
-
-                    //date was not saved with any task
-                    Tasks_Class newTask = new Tasks_Class(taskTitle, taskDescription, taskDueDate, taskStartTime, taskEndTime, taskCategory);
-                    taskRef.child(taskDueDate).child(taskTitle).setValue(newTask).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                //task data will be saved successfully
-                                progressBar.setVisibility(View.GONE);
-                                Toast.makeText(Create_Event.this, "Event Saved Successfully", Toast.LENGTH_SHORT).show();
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        //task data will be saved successfully
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(Create_Event.this, "Event Saved Successfully", Toast.LENGTH_SHORT).show();
 
 
-                            } else {
-                                // Failed to save user data
-                                progressBar.setVisibility(View.GONE);
-                                Toast.makeText(Create_Event.this, "Failed to save new task!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Failed to save user data
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(Create_Event.this, "Failed to save new task!", Toast.LENGTH_SHORT).show();
 
-                            }
-                        }
-                    });
-
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(Create_Event.this, "Retry!", Toast.LENGTH_SHORT).show();
-
+                    }
                 }
             });
 
+
         }
+
 
     }
 
@@ -435,11 +426,11 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
         double longitude = latLng.longitude;
 
         // Get the name of the location using reverse geocoding (optional)
-        String locationName = getLocationNameFromLatLng(latLng);
-        textViewLocation.setText(locationName);
+         eventLocationName = getLocationNameFromLatLng(latLng);
+        textViewLocation.setText(eventLocationName);
         // Do something with the latitude, longitude, and locationName, such as displaying in a TextView or creating a marker
         // Example:
-        Toast.makeText(this, "Clicked at: " + latitude + ", " + longitude + ", " + locationName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Clicked at: " + latitude + ", " + longitude + ", " + eventLocationName, Toast.LENGTH_SHORT).show();
 
     }
 

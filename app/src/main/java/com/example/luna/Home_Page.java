@@ -28,7 +28,7 @@ public class Home_Page extends AppCompatActivity {
             }
         });
 
-        //view My Tasks_Class
+        //view My Event_Class
         viewMyTasks = (View)  this.findViewById(R.id.viewMyTasks);
         viewMyTasks.setOnClickListener(new View.OnClickListener() {
             @Override
