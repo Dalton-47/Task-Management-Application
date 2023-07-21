@@ -2,10 +2,12 @@ package com.example.luna;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -17,14 +19,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
@@ -36,6 +36,7 @@ public class Create_Task extends AppCompatActivity {
    TextView textViewDueDate, textViewDueTime;
   ProgressBar progressBar;
    DatabaseReference taskReference;
+   Button btnSaveTask;
    private DatePickerDialog datePickerDialog;
    private TimePickerDialog timePickerDialog;
 
@@ -49,7 +50,7 @@ public class Create_Task extends AppCompatActivity {
            "Fitness",
            "Finance",
            "Personal",
-           "Shared Event_Class"
+           "Shared Tasks"
 
    };
    String userId;
@@ -193,17 +194,32 @@ public class Create_Task extends AppCompatActivity {
          }
       });
 
+      btnSaveTask = (Button)  findViewById(R.id.buttonCreateTaskSave);
+      btnSaveTask.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+            saveTaskDetails();
+         }
+      });
 
    }
 
-   private void getTaskDetails()
+   private void saveTaskDetails()
    {
+
+      taskTitle = editTextTaskTitle.getText().toString().trim();
+      taskDescription = editTextTaskDescription.getText().toString().trim();
+
+
       if (taskTitle.isEmpty()) {
          editTextTaskTitle.setError("Cannot be blank!");
+         editTextTaskTitle.requestFocus();
       } else if (taskDescription.isEmpty()) {
          editTextTaskDescription.setError("Cannot be blank!");
+         editTextTaskDescription.requestFocus();
       } else if (taskDueTime.isEmpty()) {
          textViewDueTime.setError("Cannot be blank!");
+         textViewDueTime.requestFocus();
       } else if (taskDueDate.isEmpty()) {
          textViewDueDate.setError("Cannot be blank");
       } else if (taskCategory.isEmpty()) {
@@ -213,6 +229,33 @@ public class Create_Task extends AppCompatActivity {
 
          //String title, String description, String startTimme, String dueDate, String category
          Task_Class taskObj = new Task_Class(taskTitle,taskDescription,taskDueTime,taskDueDate,taskCategory);
+
+         //use dueDate+dueTime as the child Ref
+         taskReference.child(taskDueDate).child(taskTitle).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+               if(task.isSuccessful())
+               {
+                  //task data will be saved successfully
+                  progressBar.setVisibility(View.GONE);
+                  Toast.makeText(Create_Task.this, "Event Saved Successfully", Toast.LENGTH_SHORT).show();
+
+                  Intent myIntent = new Intent(Create_Task.this, Home_Page.class);
+                  startActivity(myIntent);
+                  overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                  finish();
+
+               }
+               else
+               {
+                  // Failed to save user data
+                  progressBar.setVisibility(View.GONE);
+                  Toast.makeText(Create_Task.this, "Failed to save new task!", Toast.LENGTH_SHORT).show();
+
+               }
+            }
+         });
+
       }
    }
 

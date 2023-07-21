@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -67,7 +68,6 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
             "Fitness",
             "Finance",
             "Personal",
-            "Shared Event_Class"
 
     };
 
@@ -379,10 +379,13 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
 
         if (eventTitle.isEmpty()) {
             editTextTaskTitle.setError("Cannot be blank!");
+            editTextTaskTitle.requestFocus();
         } else if (eventDescription.isEmpty()) {
             editTextTaskDescription.setError("Cannot be blank!");
+            editTextTaskDescription.requestFocus();
         } else if (eventStartTime.isEmpty()) {
             textViewStartTime.setError("Cannot be blank!");
+            textViewStartTime.requestFocus();
         } else if (eventEndTime.isEmpty()) {
             textViewEndTime.setError("Cannot be blank");
         } else if (eventDueDate.isEmpty()) {
@@ -399,15 +402,20 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        //task data will be saved successfully
+                        //event data will be saved successfully
                         progressBar.setVisibility(View.GONE);
                         Toast.makeText(Create_Event.this, "Event Saved Successfully", Toast.LENGTH_SHORT).show();
+
+                        Intent myIntent = new Intent(Create_Event.this, Home_Page.class);
+                        startActivity(myIntent);
+                        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                        finish();
 
 
                     } else {
                         // Failed to save user data
                         progressBar.setVisibility(View.GONE);
-                        Toast.makeText(Create_Event.this, "Failed to save new task!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Create_Event.this, "Failed to save new event!", Toast.LENGTH_SHORT).show();
 
                     }
                 }

@@ -23,23 +23,29 @@
         android:theme="@style/Theme.Luna"
         tools:targetApi="31">
         <activity
+            android:name=".UploadPicture_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".User_Profile_Activity"
+            android:exported="false" />
+        <activity
             android:name=".Create_Task"
             android:exported="false" />
         <activity
             android:name=".view_tasks_activity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".APIMainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Search_Task"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Create_Event"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Home_Page"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -51,7 +57,7 @@
         </activity>
         <activity
             android:name=".Registration_Page"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.gms.version"

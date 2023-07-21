@@ -76,13 +76,13 @@
         android:layout_width="250dp"
         android:layout_height="10dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_square"
+        android:background="@drawable/textview_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
-        android:id="@+id/view10"
+        android:id="@+id/viewHomeUserProfile"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
@@ -103,7 +103,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view10" />
+        app:layout_constraintTop_toBottomOf="@+id/viewHomeUserProfile" />
 
     <TextView
         android:id="@+id/textView7"
@@ -133,7 +133,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:elevation="5.1dp"
-        android:text="New Task"
+        android:text=" Task/Event"
         android:textColor="#663300"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/viewNewTask"
@@ -229,10 +229,10 @@
         android:layout_height="50dp"
         android:background="@drawable/woman"
         android:elevation="5.1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view10"
-        app:layout_constraintEnd_toEndOf="@+id/view10"
-        app:layout_constraintStart_toStartOf="@+id/view10"
-        app:layout_constraintTop_toTopOf="@+id/view10" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewHomeUserProfile"
+        app:layout_constraintEnd_toEndOf="@+id/viewHomeUserProfile"
+        app:layout_constraintStart_toStartOf="@+id/viewHomeUserProfile"
+        app:layout_constraintTop_toTopOf="@+id/viewHomeUserProfile" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutTasks"

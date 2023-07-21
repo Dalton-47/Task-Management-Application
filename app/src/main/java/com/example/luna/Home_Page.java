@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 
 public class Home_Page extends AppCompatActivity {
- View viewMyTasks,viewNewTask, viewSearchTask, viewMyTrack, viewTaskDialog, viewEventDialog;
+ View viewMyTasks,viewNewTask, viewSearchTask, viewMyTrack, viewTaskDialog, viewEventDialog,viewUserProfile;
  View viewWorkCategory,viewFitnessCategory,viewFamilyCategory,viewPersonalCategory,viewFinanceCategory,viewSharedTasksCategory;
 
  ConstraintLayout constraintLayoutTasks;
@@ -19,6 +19,16 @@ public class Home_Page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        viewUserProfile = (View) this.findViewById(R.id.viewHomeUserProfile);
+        viewUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(Home_Page.this,User_Profile_Activity.class);
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.new_slide_in, R.anim.new_slide_out);
+            }
+        });
 
         constraintLayoutTasks =(ConstraintLayout)  this.findViewById(R.id.constraintLayoutTasks);
         constraintLayoutTasks.setOnClickListener(new View.OnClickListener() {
@@ -33,8 +43,7 @@ public class Home_Page extends AppCompatActivity {
         viewMyTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(Home_Page.this, Create_Event.class);
-                startActivity(myIntent);
+                constraintLayoutTasks.setVisibility(View.VISIBLE);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
             }
         });

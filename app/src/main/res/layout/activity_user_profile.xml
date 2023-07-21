@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wooden_floor"
+    tools:context=".User_Profile_Activity">
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="340dp"
+        android:layout_height="520dp"
+        android:background="@drawable/task_home_page_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/circular_view"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
+
+    <EditText
+        android:id="@+id/editTextTextNameUserProfile"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/textview_background"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:drawablePadding="10dp"
+        android:ellipsize="middle"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:text="@string/nulltext"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailUserProfile"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/textview_background"
+        android:drawableLeft="@drawable/baseline_email_24"
+        android:drawablePadding="10dp"
+        android:ellipsize="middle"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:text="@string/nulltext"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextNameUserProfile" />
+
+    <EditText
+        android:id="@+id/editTextTextAgeUserProfile"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/textview_background"
+        android:drawableLeft="@drawable/baseline_date_range_24"
+        android:drawablePadding="10dp"
+        android:ellipsize="middle"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:text="@string/nulltext"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailUserProfile" />
+
+    <ImageView
+        android:id="@+id/imageViewUserProfile"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view7"
+        app:layout_constraintEnd_toEndOf="@+id/view7"
+        app:layout_constraintStart_toStartOf="@+id/view7"
+        app:layout_constraintTop_toTopOf="@+id/view7" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:indeterminateDrawable="@drawable/progressbar_resource"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextAgeUserProfile"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

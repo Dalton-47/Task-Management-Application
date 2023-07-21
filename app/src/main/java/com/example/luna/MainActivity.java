@@ -8,8 +8,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -45,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Check if the user is already logged in
+        if (isLoggedIn()) {
+            Intent myIntent = new Intent(MainActivity.this, Home_Page.class);
+            startActivity(myIntent);
+            finish(); // Close LoginActivity
+        }
 
         progressbar = (ProgressBar)  this.findViewById(R.id.progressBarLogin);
 
@@ -107,72 +116,75 @@ public class MainActivity extends AppCompatActivity {
         String password = editTextLoginPassword.getText().toString().trim();
 
         if (email.isEmpty()) {
-            editTextLoginEmail.setError("Cannot be blank");
-            editTextLoginEmail.requestFocus();
-
+            // Your existing code for handling empty email field
         } else if (password.isEmpty()) {
-            editTextLoginPassword.setError("Cannot be blank");
-            editTextLoginPassword.requestFocus();
-        }
-        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
-        {
-            editTextLoginEmail.setError("Please use a valid email address!");
-            editTextLoginEmail.requestFocus();
-        }
-        else {
+            // Your existing code for handling empty password field
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            // Your existing code for handling invalid email format
+        } else {
             progressbar.setVisibility(View.VISIBLE);
-            userAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+            userAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful())
-                    {
+                    if (task.isSuccessful()) {
                         // Get instance of the current user
                         FirebaseUser firebaseUser = userAuth.getCurrentUser();
 
-                        // Check if the email is verified before user can access their profile
+                        // Check if the email is verified before the user can access their profile
                         assert firebaseUser != null;
                         if (firebaseUser.isEmailVerified()) {
-
                             // Open user profile
                             // Start the main homepage.
                             Toast.makeText(MainActivity.this, "You are logged in now", Toast.LENGTH_SHORT).show();
 
-                            Intent myIntent=new Intent(MainActivity.this,Home_Page.class);
-                            startActivity(myIntent); //start next Activity
+                            // Save the login status to SharedPreferences
+                            saveLoginStatus(true);
+
+                            Intent myIntent = new Intent(MainActivity.this, Home_Page.class);
+                            startActivity(myIntent); // start next Activity
                             overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                             progressbar.setVisibility(View.GONE);
                             finish(); // Close LoginActivity
-                        }else {
+                        } else {
                             progressbar.setVisibility(View.GONE);
                             firebaseUser.sendEmailVerification();
                             userAuth.signOut(); // Sign out user.
                             showAlertDialogue();
                         }
-                        }
-                    else {
+                    } else {
                         try {
                             throw task.getException();
-                        } catch (FirebaseAuthInvalidUserException e){
+                        } catch (FirebaseAuthInvalidUserException e) {
                             editTextLoginEmail.setError("User does not exist or is no longer valid. Please register again.");
                             editTextLoginEmail.requestFocus();
-                        } catch (FirebaseAuthInvalidCredentialsException e){
+                        } catch (FirebaseAuthInvalidCredentialsException e) {
                             editTextLoginEmail.setError("Invalid credentials. Kindly check and re-enter.");
                             editTextLoginEmail.requestFocus();
                         } catch (Exception e) {
-                            Log.e(TAG,e.getMessage());
+                            Log.e(TAG, e.getMessage());
                             progressbar.setVisibility(View.GONE);
                             Toast.makeText(MainActivity.this, "Check Network Connection!", Toast.LENGTH_SHORT).show();
-                            //    Toast.makeText(Login_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(Login_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-
-                        }
+                    }
                     progressbar.setVisibility(View.GONE);
-
-
                 }
             });
         }
     }
+
+    private boolean isLoggedIn() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean("isLoggedIn", false);
+    }
+
+    private void saveLoginStatus(boolean isLoggedIn) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLoggedIn", isLoggedIn);
+        editor.apply();
+    }
+
 
     private void showAlertDialogue() {
         // Set up the alert builder

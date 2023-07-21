@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wooden_floor"
+    tools:context=".UploadPicture_Activity">
+
+    <TextView
+        android:id="@+id/textView106"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Upload Profile Picture"
+        android:textColor="#FFFDD0"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view58" />
+
+    <View
+        android:id="@+id/view58"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:background="#663300"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonUserChoosePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        android:padding="15dp"
+        android:text="Select A Photo"
+        android:textColor="#FFFDD0"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView106" />
+
+    <View
+        android:id="@+id/view59"
+        android:layout_width="310dp"
+        android:layout_height="410dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_green_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUserChoosePic" />
+
+    <ImageView
+        android:id="@+id/imageViewUserUploadPic"
+        android:layout_width="300dp"
+        android:layout_height="390dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/view59"
+        app:layout_constraintStart_toStartOf="@+id/view59"
+        app:layout_constraintTop_toTopOf="@+id/view59" />
+
+    <Button
+        android:id="@+id/buttonUserUploadPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        android:padding="15dp"
+        android:text="Save Photo"
+        android:textColor="#FFFDD0"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view59" />
+
+    <ProgressBar
+        android:id="@+id/progressBarPatientUploadPic"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:indeterminateDrawable="@drawable/progressbar_resource"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUserChoosePic" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
