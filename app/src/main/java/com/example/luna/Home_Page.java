@@ -148,6 +148,20 @@ public class Home_Page extends AppCompatActivity {
         });
 
 
+        //categorised Tasks view
+        viewFinanceCategory = (View) this.findViewById(R.id.viewFinanceCategory);
+        viewFinanceCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // constraintLayoutTasks.setVisibility(View.VISIBLE);
+                Intent myIntent = new Intent(Home_Page.this,view_tasks_activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("category","finance");
+                myIntent.putExtras(bundle);
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+            }
+        });
 
     }
 

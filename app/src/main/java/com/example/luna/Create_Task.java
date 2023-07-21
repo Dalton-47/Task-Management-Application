@@ -107,8 +107,10 @@ public class Create_Task extends AppCompatActivity {
                              myHour = Integer.toString(hourOfDay);
                           }
 
+                          //datetime format 2023-07-21T09:00:00-07:00
                           textViewDueTime.setText(myHour + ":" + myMinute + " hours");
-                          taskDueTime = myHour + ":" + myMinute;
+
+                          taskDueTime = myHour + ":" + myMinute+":00";
 
                        }
                     },
@@ -156,8 +158,11 @@ public class Create_Task extends AppCompatActivity {
                      myDay=Integer.toString(dayOfMonth);
                   }
 
+                  //datetime format 2023-07-21T09:00:00-07:00
                   textViewDueDate.setText(myDay + "-" + myMonth + "-" + year);
-                  taskDueDate = myDay + myMonth + Integer.toString(year);
+                  //taskDueDate = myDay + myMonth + Integer.toString(year);
+                  taskDueDate = Integer.toString(year) +"-"+myMonth+"-"+myDay;
+
 
                }
             }, year, month, day);
@@ -170,7 +175,7 @@ public class Create_Task extends AppCompatActivity {
       // Assuming you have already initialized your Spinner and categoryArray
       ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_layouts, categoryArray);
 
-// Set the layout to use when the list of choices appears
+      // Set the layout to use when the list of choices appears
       arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
       // Set the adapter to the Spinner
@@ -206,6 +211,10 @@ public class Create_Task extends AppCompatActivity {
 
    private void saveTaskDetails()
    {
+      FirebaseAuth mAuth = FirebaseAuth.getInstance();
+      FirebaseUser currentUser = mAuth.getCurrentUser();
+      String userId = currentUser.getUid();
+      String email = currentUser.getEmail();
 
       taskTitle = editTextTaskTitle.getText().toString().trim();
       taskDescription = editTextTaskDescription.getText().toString().trim();
@@ -227,23 +236,40 @@ public class Create_Task extends AppCompatActivity {
       } else {
          progressBar.setVisibility(View.VISIBLE);
 
+         //let us set status of the task
+         String status="New";
          //String title, String description, String startTimme, String dueDate, String category
-         Task_Class taskObj = new Task_Class(taskTitle,taskDescription,taskDueTime,taskDueDate,taskCategory);
-
+         Task_Class taskObj = new Task_Class(taskTitle,taskDescription,taskDueTime,taskDueDate,taskCategory,status);
+       String dateTimeString=taskDueDate+"T"+taskDueTime;
          //use dueDate+dueTime as the child Ref
-         taskReference.child(taskDueDate).child(taskTitle).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+         taskReference.child(dateTimeString).child(taskTitle).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                if(task.isSuccessful())
                {
-                  //task data will be saved successfully
-                  progressBar.setVisibility(View.GONE);
-                  Toast.makeText(Create_Task.this, "Event Saved Successfully", Toast.LENGTH_SHORT).show();
 
-                  Intent myIntent = new Intent(Create_Task.this, Home_Page.class);
-                  startActivity(myIntent);
-                  overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-                  finish();
+                  //let us save the data to tasks that are categorized in the database
+                  DatabaseReference categoryRef;
+                  categoryRef = FirebaseDatabase.getInstance().getReference("Categorised Tasks");
+
+                  categoryRef.child(userId).child(taskCategory).child(dateTimeString).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+                     @Override
+                     public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                        {
+                           //task data will be saved successfully
+                           progressBar.setVisibility(View.GONE);
+                           Toast.makeText(Create_Task.this, "Task Saved Successfully", Toast.LENGTH_SHORT).show();
+
+                           Intent myIntent = new Intent(Create_Task.this, Home_Page.class);
+                           startActivity(myIntent);
+                           overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                           finish();
+                        }
+                     }
+                  });
+
+
 
                }
                else

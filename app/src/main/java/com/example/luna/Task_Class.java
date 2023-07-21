@@ -7,14 +7,25 @@ public class Task_Class {
     String startTime;
     String dueDate;
     String category;
+    String status;
 
-    public Task_Class(String title, String description, String startTime, String dueDate, String category) {
+    public Task_Class(String title, String description, String startTime, String dueDate, String category, String status) {
         this.title = title;
         this.description = description;
         this.startTime = startTime;
         this.dueDate = dueDate;
         this.category = category;
+        this.status = status;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 
     public String getTitle() {
         return title;
