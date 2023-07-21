@@ -1,15 +1,25 @@
 package com.example.luna;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class Home_Page extends AppCompatActivity {
  View viewMyTasks,viewNewTask, viewSearchTask, viewMyTrack, viewTaskDialog, viewEventDialog,viewUserProfile;
@@ -19,6 +29,11 @@ public class Home_Page extends AppCompatActivity {
 
  FirebaseAuth firebaseAuth;
  FirebaseUser firebaseUser;
+ DatabaseReference userReference;
+
+ ImageView imageViewUserProfileHome;
+
+ TextView textViewUserWelcomeText;
 
     private Dialog categoryDialog;
     @Override
@@ -28,6 +43,49 @@ public class Home_Page extends AppCompatActivity {
 
         firebaseAuth  = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+        //get database reference to read users details
+        userReference= FirebaseDatabase.getInstance().getReference("users");
+
+        imageViewUserProfileHome = (ImageView)  this.findViewById(R.id.imageViewUserProfileHome);
+
+        textViewUserWelcomeText =(TextView)  this.findViewById(R.id.textViewUserWelcomeText);
+
+        //set username on dashboard
+        readUserName();
+
+        //setting profile picture
+        if(firebaseUser!=null)
+        {
+            // Set User DP (After user has uploaded)
+            Uri uri = firebaseUser.getPhotoUrl();
+
+            if(uri!=null)
+            {
+                // ImageViewer setImageURI() should not be used with regular URIs. So we are using Picasso
+              //  view60.setBackground(getResources().getDrawable(R.drawable.white_background_circle));
+                Picasso.get().load(uri)
+                        .transform(new SquareTransformation() )
+                        .into(imageViewUserProfileHome);
+            }
+            else
+            {
+               // view60.setBackground(getResources().getDrawable(R.drawable.white_background_circle));
+
+                imageViewUserProfileHome.setBackground(getResources().getDrawable(R.drawable.error_person));
+
+            }
+
+
+        }
+        else
+        {
+           // view60.setBackground(getResources().getDrawable(R.drawable.white_background_circle));
+            imageViewUserProfileHome.setBackground(getResources().getDrawable(R.drawable.error_person));
+
+
+        }
+
 
         viewUserProfile = (View) this.findViewById(R.id.viewHomeUserProfile);
         viewUserProfile.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +149,38 @@ public class Home_Page extends AppCompatActivity {
 
 
 
+    }
+
+    void readUserName()
+    {
+        String userId = firebaseUser.getUid();
+        String email = firebaseUser.getEmail();
+        userReference.child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful())
+                {
+                    DataSnapshot thisDataSnapshot=task.getResult();
+                    String userName=String.valueOf(thisDataSnapshot.child("username").getValue());
+                    // Toast.makeText(Patient_Main_Page_NEW.this," FIRSTNAME "+firstname ,Toast.LENGTH_SHORT).show();
+                    if(userName.equals("null"))
+                    {
+                        textViewUserWelcomeText.setText("Kindly Register With Us.");
+                    }
+                    else
+                    {
+                        textViewUserWelcomeText.setText("Hi, "+userName+".");
+                    }
+
+
+                }
+                else
+                {
+                    textViewUserWelcomeText.setText("Hello User Check Network!");
+                }
+
+            }
+        });
     }
 
     private void showEventTaskDialog()
