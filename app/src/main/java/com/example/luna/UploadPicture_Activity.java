@@ -35,7 +35,7 @@ public class UploadPicture_Activity extends AppCompatActivity {
     StorageReference storageReference;
     FirebaseAuth authProfile;
     private static final int PICK_IMAGE_REQUEST = 1;
-    Uri uriImage;
+    Uri uriImage,uri;
 
 
     @Override
@@ -54,7 +54,7 @@ public class UploadPicture_Activity extends AppCompatActivity {
 
         storageReference = FirebaseStorage.getInstance().getReference("UserPictures");
 
-        Uri uri = firebaseUser.getPhotoUrl();
+         uri = firebaseUser.getPhotoUrl();
 
         // Set User's current DP in ImageView (if uploaded already). We will Picasso since imageViewer setImage
         // Regular URIs.
@@ -105,6 +105,13 @@ public class UploadPicture_Activity extends AppCompatActivity {
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
+                            /*
+                            if(taskSnapshot.getTask().isSuccessful())
+                            {
+
+                            }
+
+                             */
                             Uri downloadUri = uri;
                             firebaseUser = authProfile.getCurrentUser();
 
@@ -119,6 +126,7 @@ public class UploadPicture_Activity extends AppCompatActivity {
                     startActivity(new Intent(UploadPicture_Activity.this,User_Profile_Activity.class));
                     overridePendingTransition(R.anim.new_slide_in, R.anim.new_slide_out);
                     finish();
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -126,7 +134,14 @@ public class UploadPicture_Activity extends AppCompatActivity {
                     Toast.makeText(UploadPicture_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else {
+        }
+        else if(uri!=null)
+        {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(UploadPicture_Activity.this, "Image already saved!", Toast.LENGTH_SHORT).show();
+
+        }else {
+
             progressBar.setVisibility(View.GONE);
             Toast.makeText(UploadPicture_Activity.this, "No file selected!", Toast.LENGTH_SHORT).show();
         }

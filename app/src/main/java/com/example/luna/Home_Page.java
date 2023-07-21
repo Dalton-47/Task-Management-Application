@@ -8,17 +8,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class Home_Page extends AppCompatActivity {
  View viewMyTasks,viewNewTask, viewSearchTask, viewMyTrack, viewTaskDialog, viewEventDialog,viewUserProfile;
  View viewWorkCategory,viewFitnessCategory,viewFamilyCategory,viewPersonalCategory,viewFinanceCategory,viewSharedTasksCategory;
 
  ConstraintLayout constraintLayoutTasks;
 
+ FirebaseAuth firebaseAuth;
+ FirebaseUser firebaseUser;
+
     private Dialog categoryDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        firebaseAuth  = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
         viewUserProfile = (View) this.findViewById(R.id.viewHomeUserProfile);
         viewUserProfile.setOnClickListener(new View.OnClickListener() {

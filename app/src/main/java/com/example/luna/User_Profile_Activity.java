@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -31,6 +32,8 @@ public class User_Profile_Activity extends AppCompatActivity {
     ProgressBar progressBar;
     ImageView imageView;
     EditText editTextName, editTextEmail, editTextAge;
+
+    Button  btnBackHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,14 @@ public class User_Profile_Activity extends AppCompatActivity {
             showUserProfile(firebaseUser);
         }
 
+        btnBackHome = (Button)  this.findViewById(R.id.buttonBackToDashboard);
+        btnBackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(User_Profile_Activity.this,Home_Page.class));
+            }
+        });
+
 
     }
 
@@ -105,7 +116,7 @@ public class User_Profile_Activity extends AppCompatActivity {
 
                             }
 
-
+                            progressBar.setVisibility(View.GONE);
 
                         }
                         else {
