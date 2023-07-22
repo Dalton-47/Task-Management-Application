@@ -156,7 +156,7 @@ public class Home_Page extends AppCompatActivity {
                 // constraintLayoutTasks.setVisibility(View.VISIBLE);
                 Intent myIntent = new Intent(Home_Page.this,view_tasks_activity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("category","finance");
+                bundle.putString("category","Finance");
                 myIntent.putExtras(bundle);
                 startActivity(myIntent);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
@@ -202,10 +202,6 @@ public class Home_Page extends AppCompatActivity {
         // Initialize the dialog
         categoryDialog = new Dialog(this);
         categoryDialog.setContentView(R.layout.event_task_dialog_layout);
-
-
-        // Initialize the MapView
-      //  mapView = mapDialog.findViewById(R.id.mapViewMain);
 
         viewTaskDialog = categoryDialog.findViewById(R.id.viewTaskDialog);
         viewEventDialog = categoryDialog.findViewById(R.id.viewEventDialog);

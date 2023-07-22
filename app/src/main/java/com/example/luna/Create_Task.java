@@ -173,7 +173,7 @@ public class Create_Task extends AppCompatActivity {
       spinnerTaskCategory = (Spinner) this.findViewById(R.id.spinnerCreateTaskCategory);
 
       // Assuming you have already initialized your Spinner and categoryArray
-      ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_layouts, categoryArray);
+      ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, categoryArray);
 
       // Set the layout to use when the list of choices appears
       arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

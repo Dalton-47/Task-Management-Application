@@ -13,19 +13,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="?android:attr/listDivider" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="440dp"
+                android:layout_height="420dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp">
 
@@ -39,25 +33,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textViewTaskDateLIST"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Date"
-                    android:textColor="#663300"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textViewPatientName_REC"
+                    android:id="@+id/textViewTaskTitle_REC"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="-6dp"
                     android:background="@drawable/textview_background"
                     android:padding="8dp"
-                    android:text="TextView"
                     android:textColor="#663300"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -68,14 +50,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:background="#8FFFFDD0"
                     android:elevation="0.1dp"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
                     android:text="Title"
-                    app:layout_constraintStart_toStartOf="@+id/textViewPatientName_REC"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewTaskDateLIST" />
+                    app:layout_constraintStart_toStartOf="@+id/textViewTaskTitle_REC"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTaskStatus_REC" />
 
                 <TextView
                     android:id="@+id/textView110"
@@ -89,17 +71,16 @@
                     android:paddingEnd="5dp"
                     android:text="Description"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewPatientName_REC" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTaskTitle_REC" />
 
                 <TextView
-                    android:id="@+id/textViewPatientAge_REC"
+                    android:id="@+id/textViewTaskDescription_REC"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="-6dp"
                     android:background="@drawable/textview_background"
                     android:padding="8dp"
-                    android:text="TextView"
                     android:textColor="#663300"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -115,19 +96,18 @@
                     android:elevation="0.1dp"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
-                    android:text="Start Time"
+                    android:text="Due Time"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewPatientAge_REC" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTaskDescription_REC" />
 
                 <TextView
-                    android:id="@+id/textViewAppointmentDescription_REC"
+                    android:id="@+id/textViewTaskDueTime_REC"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="-6dp"
                     android:background="@drawable/textview_background"
                     android:padding="8dp"
-                    android:text="TextView"
                     android:textColor="#663300"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -143,26 +123,25 @@
                     android:elevation="0.1dp"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
-                    android:text="End Time"
+                    android:text="Due Date"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewAppointmentDescription_REC" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTaskDueTime_REC" />
 
                 <TextView
-                    android:id="@+id/textViewReportContent_REC"
+                    android:id="@+id/textViewTaskDueDate_REC"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="-6dp"
                     android:background="@drawable/textview_background"
                     android:padding="8dp"
-                    android:text="TextView"
                     android:textColor="#663300"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView114" />
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/buttonUpdateStatus_REC"
                     android:layout_width="280dp"
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
@@ -172,15 +151,14 @@
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewReportContent_REC" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTaskDueDate_REC" />
 
                 <TextView
-                    android:id="@+id/textView36"
+                    android:id="@+id/textViewTaskStatus_REC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Task Progress"
                     android:textColor="#663300"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -192,7 +170,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="4dp"
                     android:background="@drawable/navy_blue_circle"
-                    app:layout_constraintEnd_toStartOf="@+id/textView36"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewTaskStatus_REC"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
