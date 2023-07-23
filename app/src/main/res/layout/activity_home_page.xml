@@ -298,7 +298,7 @@
                             app:layout_constraintTop_toTopOf="@+id/viewFitnessCategory" />
 
                         <View
-                            android:id="@+id/viewFamilyCategory"
+                            android:id="@+id/viewSchoolCategory"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginStart="8dp"
@@ -314,8 +314,8 @@
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="24dp"
                             android:background="@drawable/family"
-                            app:layout_constraintStart_toStartOf="@+id/viewFamilyCategory"
-                            app:layout_constraintTop_toTopOf="@+id/viewFamilyCategory" />
+                            app:layout_constraintStart_toStartOf="@+id/viewSchoolCategory"
+                            app:layout_constraintTop_toTopOf="@+id/viewSchoolCategory" />
 
                         <View
                             android:id="@+id/viewPersonalCategory"
@@ -345,7 +345,7 @@
                             android:layout_marginTop="16dp"
                             android:background="@drawable/rounded_green_background"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/viewFamilyCategory" />
+                            app:layout_constraintTop_toBottomOf="@+id/viewSchoolCategory" />
 
                         <ImageView
                             android:id="@+id/imageView14"
@@ -416,12 +416,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="16dp"
-                            android:text="Family"
+                            android:text="School"
                             android:textColor="#663300"
                             android:textSize="22sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/viewFamilyCategory"
-                            app:layout_constraintEnd_toEndOf="@+id/viewFamilyCategory"
-                            app:layout_constraintStart_toStartOf="@+id/viewFamilyCategory" />
+                            app:layout_constraintBottom_toBottomOf="@+id/viewSchoolCategory"
+                            app:layout_constraintEnd_toEndOf="@+id/viewSchoolCategory"
+                            app:layout_constraintStart_toStartOf="@+id/viewSchoolCategory" />
 
                         <TextView
                             android:id="@+id/textView33"

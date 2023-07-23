@@ -434,7 +434,7 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
         double longitude = latLng.longitude;
 
         // Get the name of the location using reverse geocoding (optional)
-         eventLocationName = getLocationNameFromLatLng(latLng);
+         eventLocationName = getLocationNameFromLatLng(latLng).toString();
         textViewLocation.setText(eventLocationName);
         // Do something with the latitude, longitude, and locationName, such as displaying in a TextView or creating a marker
         // Example:

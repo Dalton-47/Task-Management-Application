@@ -2,6 +2,7 @@ package com.example.luna;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +25,21 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class view_tasks_activity extends AppCompatActivity implements Task_Adapter.OnSaveButtonClickListener{
+public class view_tasks_activity extends AppCompatActivity implements Task_Adapter.OnSaveButtonClickListener,Task_Adapter.interface_adapter{
+
+    //initialize interface with method to redirect user to home page
+    @Override
+    public  void onSaveInterface() {
+        // Implement the refresh logic here
+        exitActivity();
+    }
+
+    private void exitActivity()
+    {
+        Intent myIntent = new Intent(view_tasks_activity.this,Home_Page.class);
+        startActivity(myIntent);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+    }
 
     @Override
     public void onSaveButtonClicked() {
@@ -38,15 +53,19 @@ public class view_tasks_activity extends AppCompatActivity implements Task_Adapt
         taskAdapter.notifyDataSetChanged();
 
     }
+
+
  Task_Adapter taskAdapter;
  String category;
  ArrayList<Task_Class> tasksAppointmentsList =new ArrayList<Task_Class>();
-TextView textViewTaskHeading,textViewTaskTitleDialog;
+TextView textViewTaskHeading,textViewTaskTitleDialog,textViewTaskNotFound;
+ConstraintLayout constraintLayoutTaskNotFound;
  DatabaseReference categoryRef;
     RadioGroup radioGroupOptions;
 
     Dialog taskStatusDialog,myTaskDialog;
     Button btnSaveTaskStatusDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +80,9 @@ TextView textViewTaskHeading,textViewTaskTitleDialog;
         btnSaveTaskStatusDialog =(Button) myTaskDialog.findViewById(R.id.buttonDialogSaveStatus);
 
 
+        textViewTaskNotFound = (TextView)  this.findViewById(R.id.textViewTaskNotFound);
+        constraintLayoutTaskNotFound = (ConstraintLayout)  this.findViewById(R.id.constraintLayouttasksNotFound);
+
         Intent intent =getIntent();
         category=getIntent().getStringExtra("category");
 
@@ -70,7 +92,7 @@ TextView textViewTaskHeading,textViewTaskTitleDialog;
         RecyclerView taskRecyclerView=(RecyclerView)  this.findViewById(R.id.recyclerViewTasks);
 
         //Initializing the Task_Adapter with parameters that will be passed to the class
-        taskAdapter = new Task_Adapter(this,textViewTaskTitleDialog,myTaskDialog,radioGroupOptions,btnSaveTaskStatusDialog,this);
+        taskAdapter = new Task_Adapter(this,textViewTaskTitleDialog,myTaskDialog,radioGroupOptions,btnSaveTaskStatusDialog,this,this);
         taskRecyclerView.setAdapter(taskAdapter);
 
         LinearLayoutManager linearLayout=new LinearLayoutManager(this);
@@ -81,7 +103,7 @@ TextView textViewTaskHeading,textViewTaskTitleDialog;
         taskRecyclerView.addItemDecoration(new RecyclerViewItemDecorationClass(this, spacingInPixels) );
 
 
-        Toast.makeText(this, category, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, category, Toast.LENGTH_SHORT).show();
         //call method to get Tasks
         getTaskData();
 
@@ -125,8 +147,12 @@ TextView textViewTaskHeading,textViewTaskTitleDialog;
                 }
                 taskAdapter.setData(tasksAppointmentsList);
 
-                if(tasksAppointmentsList.size()==0)
+                //if arraylist has no tasks
+                if(tasksAppointmentsList.isEmpty())
                 {
+
+                    constraintLayoutTaskNotFound.setVisibility(View.VISIBLE);
+                    textViewTaskNotFound.setText("No "+category+" tasks found!");
                  //   relativeLayoutNoAppointments.setVisibility(View.VISIBLE);
                     //Toast.makeText(Doctor_View_Appointments_NEW.this, "No New Appointments Today", Toast.LENGTH_SHORT).show();
                 }

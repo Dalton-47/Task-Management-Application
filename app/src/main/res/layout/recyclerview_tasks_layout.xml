@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_green_back"
     android:orientation="vertical">
 
 
@@ -19,18 +20,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="420dp"
+                android:layout_height="match_parent"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp">
-
-                <View
-                    android:id="@+id/view80"
-                    android:layout_width="wrap_content"
-                    android:layout_height="420dp"
-                    android:background="@drawable/rounded_green_background"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewTaskTitle_REC"
@@ -51,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:background="#8FFFFDD0"
+                    android:background="#FFFDD0"
                     android:elevation="0.1dp"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
@@ -65,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:background="#8FFFFDD0"
+                    android:background="#FFFDD0"
                     android:elevation="0.1dp"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
@@ -92,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:background="#8FFFFDD0"
+                    android:background="#FFFDD0"
                     android:elevation="0.1dp"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"

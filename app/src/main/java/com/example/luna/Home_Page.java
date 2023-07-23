@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
 
 public class Home_Page extends AppCompatActivity {
  View viewMyTasks,viewNewTask, viewSearchTask, viewMyTrack, viewTaskDialog, viewEventDialog,viewUserProfile;
- View viewWorkCategory,viewFitnessCategory,viewFamilyCategory,viewPersonalCategory,viewFinanceCategory,viewSharedTasksCategory;
+ View viewWorkCategory,viewFitnessCategory, viewSchoolCategory,viewPersonalCategory,viewFinanceCategory,viewSharedTasksCategory;
 
  ConstraintLayout constraintLayoutTasks;
 
@@ -148,7 +148,7 @@ public class Home_Page extends AppCompatActivity {
         });
 
 
-        //categorised Tasks view
+        //Finance View Tasks view
         viewFinanceCategory = (View) this.findViewById(R.id.viewFinanceCategory);
         viewFinanceCategory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,8 +160,90 @@ public class Home_Page extends AppCompatActivity {
                 myIntent.putExtras(bundle);
                 startActivity(myIntent);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                constraintLayoutTasks.setVisibility(View.GONE);
             }
         });
+
+        //Work View Tasks view
+        viewWorkCategory = (View) this.findViewById(R.id.viewWorkCategory);
+        viewWorkCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // constraintLayoutTasks.setVisibility(View.VISIBLE);
+                Intent myIntent = new Intent(Home_Page.this,view_tasks_activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("category","Work");
+                myIntent.putExtras(bundle);
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                constraintLayoutTasks.setVisibility(View.GONE);
+            }
+        });
+
+        //Fitness View Tasks view
+        viewFitnessCategory = (View) this.findViewById(R.id.viewFitnessCategory);
+        viewFitnessCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // constraintLayoutTasks.setVisibility(View.VISIBLE);
+                Intent myIntent = new Intent(Home_Page.this,view_tasks_activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("category","Fitness");
+                myIntent.putExtras(bundle);
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                constraintLayoutTasks.setVisibility(View.GONE);
+            }
+        });
+
+        //School View Tasks view
+        viewSchoolCategory = (View) this.findViewById(R.id.viewSchoolCategory);
+        viewSchoolCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // constraintLayoutTasks.setVisibility(View.VISIBLE);
+                Intent myIntent = new Intent(Home_Page.this,view_tasks_activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("category","School");
+                myIntent.putExtras(bundle);
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                constraintLayoutTasks.setVisibility(View.GONE);
+            }
+        });
+
+        //Personal View Tasks view
+        viewPersonalCategory = (View) this.findViewById(R.id.viewPersonalCategory);
+        viewPersonalCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // constraintLayoutTasks.setVisibility(View.VISIBLE);
+                Intent myIntent = new Intent(Home_Page.this,view_tasks_activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("category","Personal");
+                myIntent.putExtras(bundle);
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                constraintLayoutTasks.setVisibility(View.GONE);
+            }
+        });
+
+        //Shared Tasks view
+        viewSharedTasksCategory = (View) this.findViewById(R.id.viewSharedTaskCategory);
+        viewSharedTasksCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // constraintLayoutTasks.setVisibility(View.VISIBLE);
+                Intent myIntent = new Intent(Home_Page.this,view_tasks_activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("category","Shared");
+                myIntent.putExtras(bundle);
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                constraintLayoutTasks.setVisibility(View.GONE);
+            }
+        });
+
 
     }
 

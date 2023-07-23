@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -22,11 +24,19 @@ import java.util.ArrayList;
 
 public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHolder> {
 
+
+    public interface interface_adapter {
+        // Implement the refresh logic here
+        void onSaveInterface();
+    }
+
     //define an interface
     public interface OnSaveButtonClickListener {
         void onSaveButtonClicked();
     }
 
+
+    private interface_adapter interface_adapter;
     //member variable for the interface
     private OnSaveButtonClickListener onSaveButtonClickListener;
 
@@ -37,9 +47,10 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
     RadioGroup myRadioGroup;
     Button btnSaveTaskStatusDialog;
     String newStatus="";
+    String userId;
 
 
-    public Task_Adapter(view_tasks_activity view_tasks_activity, TextView textViewTaskTitleDialog, Dialog myTaskDialog, RadioGroup radioGroupOptions, Button btnSaveTaskStatusDialog, OnSaveButtonClickListener onSaveButtonClickListener) {
+    public Task_Adapter(view_tasks_activity view_tasks_activity, TextView textViewTaskTitleDialog, Dialog myTaskDialog, RadioGroup radioGroupOptions, Button btnSaveTaskStatusDialog, OnSaveButtonClickListener onSaveButtonClickListener, interface_adapter interface_adapter) {
         myContext = view_tasks_activity;
        this.textViewTaskTitleDialog = textViewTaskTitleDialog;
        this.myDialog = myTaskDialog;
@@ -48,10 +59,15 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
 
        //initializing the interface
         this.onSaveButtonClickListener = onSaveButtonClickListener;
+        this.interface_adapter = interface_adapter;
 
     }
 
     public void setData(ArrayList<Task_Class> tasksAppointmentsList) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        assert currentUser != null;
+         userId = currentUser.getUid();
         this.myTasksArrayList = tasksAppointmentsList;
         notifyDataSetChanged();
 
@@ -117,27 +133,74 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
 
                       FirebaseAuth mAuth = FirebaseAuth.getInstance();
                       FirebaseUser currentUser = mAuth.getCurrentUser();
-                      String userId = currentUser.getUid();
+                      assert currentUser != null;
+                     String userId = currentUser.getUid();
                       DatabaseReference taskRef = FirebaseDatabase.getInstance().getReference("Categorised Tasks").child(userId).child(taskObj.getCategory()).child(taskObj.getDateTime());
 
 
                       if(newStatus!="")
                       {
-                          //update the new status to database
-                          taskRef.child("status").setValue(newStatus);
-                          Toast.makeText(myContext, "Updated status successfully", Toast.LENGTH_SHORT).show();
-                          holder.textViewTaskProgress.setText(newStatus);
+
+                          if(newStatus=="Completed" || newStatus=="OverDue" || newStatus=="Deferred" || newStatus=="Cancelled")
+                          {
+                              taskRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                  @Override
+                                  public void onComplete(@NonNull Task<Void> task) {
+                                      if(task.isSuccessful())
+                                      {
+                                          //check if task was removed from list of tasks
+                                          Toast.makeText(myContext, "Updated status successfully", Toast.LENGTH_SHORT).show();
+
+                                          //we then create a new Data node for the task and save it there
+                                          DatabaseReference removedTaskRef = FirebaseDatabase.getInstance().getReference("Task Progress").child(userId).child(newStatus).child(taskObj.getDateTime());
 
 
-                          // Notify the main activity about the save button click
-                          if (onSaveButtonClickListener != null) {
-                              onSaveButtonClickListener.onSaveButtonClicked();
+                                          Task_Class newTaskObj = new Task_Class(taskObj.getTitle(), taskObj.getDescription(), taskObj.getDueTime(),taskObj.getDueDate(),taskObj.getCategory(),newStatus, taskObj.getDateTime());
+                                          removedTaskRef.setValue(newTaskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                              @Override
+                                              public void onComplete(@NonNull Task<Void> task) {
+
+                                                  // Redirect user to main activity
+                                                  if (interface_adapter != null) {
+                                                      interface_adapter.onSaveInterface();
+                                                  }
+
+                                                  // notifyDataSetChanged();
+                                                  myDialog.dismiss();
+                                              }
+                                          });
+                                      }
+
+                                  }
+                              });
+                          }
+                          else {
+                              if(newStatus== taskObj.getStatus())
+                              {
+                                  Toast.makeText(myContext, "You have selected current task status", Toast.LENGTH_SHORT).show();
+                              }
+                              else
+                              {
+                                  //update the new status to database
+                                  taskRef.child("status").setValue(newStatus);
+                                  Toast.makeText(myContext, "Updated status successfully", Toast.LENGTH_SHORT).show();
+                                  holder.textViewTaskProgress.setText(newStatus);
+
+                                  // Notify the main activity about the save button click
+                                  if (onSaveButtonClickListener != null) {
+                                      onSaveButtonClickListener.onSaveButtonClicked();
+                                  }
+
+                                  // notifyDataSetChanged();
+                                  myDialog.dismiss();
+                              }
+
                           }
 
 
-                         // notifyDataSetChanged();
+                      }
+                      else {
                           myDialog.dismiss();
-
                       }
 
 
@@ -164,28 +227,22 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
                 switch (checkedId) {
                     case R.id.radioButtonInProgress:
                         newStatus = "In-Progress";
-                        Toast.makeText(myContext, "Status : In-Progress", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radioButtonOnHold:
                          newStatus="On-Hold";
-                        Toast.makeText(myContext, "Status : On-Hold", Toast.LENGTH_SHORT).show();
-                        break;
+                         break;
                     case R.id.radioButtonCompleted:
                         newStatus="Completed";
-                        Toast.makeText(myContext, "Status : Completed", Toast.LENGTH_SHORT).show();
-                        break;
+                         break;
                     case R.id.radioButtonOverdue:
                          newStatus="OverDue";
-                        Toast.makeText(myContext, "Status : OverDue", Toast.LENGTH_SHORT).show();
-                        break;
+                          break;
                     case R.id.radioButtonDeferred:
                          newStatus="Deferred";
-                        Toast.makeText(myContext, "Status : Deferred", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radioButtonCancelled:
                          newStatus="Cancelled";
-                        Toast.makeText(myContext, "Status : Cancelled", Toast.LENGTH_SHORT).show();
-                        break;
+                         break;
                 }
             }
         });
