@@ -6,13 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
-        android:layout_width="380dp"
+        android:id="@+id/scrollViewSearchTasks"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_gradient_background"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/button_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view11">
+        app:layout_constraintTop_toTopOf="parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/textViewTaskTitle_SEARCH"
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="16dp"
@@ -55,7 +55,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView21"
+                        android:id="@+id/textViewTaskDescription_SEARCH"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -73,17 +73,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:background="#663300"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
                         android:text="Description"
                         android:textColor="#E8F5E9"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTaskTitle_SEARCH" />
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/textViewTaskDueDate_SEARCH"
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="16dp"
@@ -100,17 +100,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:background="#663300"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
                         android:text="Due Date"
                         android:textColor="#E8F5E9"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTaskDescription_SEARCH" />
 
                     <TextView
-                        android:id="@+id/textView25"
+                        android:id="@+id/textViewTaskDueTime_SEARCH"
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="16dp"
@@ -127,17 +127,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="4dp"
                         android:background="#663300"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
                         android:text="Due Time"
                         android:textColor="#E8F5E9"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTaskDueDate_SEARCH" />
 
                     <TextView
-                        android:id="@+id/textView29"
+                        android:id="@+id/textViewTaskCategory_SEARCH"
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="16dp"
@@ -154,14 +154,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:background="#663300"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
                         android:text="Category"
                         android:textColor="#E8F5E9"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTaskDueTime_SEARCH" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </RelativeLayout>

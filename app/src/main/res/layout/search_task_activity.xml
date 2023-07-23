@@ -4,35 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#663300"
+    android:background="@drawable/wooden_floor"
     tools:context=".Search_Task">
 
-    <View
-        android:id="@+id/view11"
+    <DatePicker
+        android:id="@+id/datePickerNew"
         android:layout_width="wrap_content"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/search_task_background"
-        android:elevation="5.0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="5.1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view11" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="391dp"
-        android:layout_height="433dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/recyclerViewSearchTasks"
+        android:layout_width="340dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view11" />
+        app:layout_constraintTop_toBottomOf="@+id/datePickerNew" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

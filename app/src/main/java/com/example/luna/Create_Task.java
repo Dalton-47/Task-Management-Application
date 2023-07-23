@@ -242,7 +242,7 @@ public class Create_Task extends AppCompatActivity {
          //String title, String description, String startTimme, String dueDate, String category
          Task_Class taskObj = new Task_Class(taskTitle,taskDescription,taskDueTime,taskDueDate,taskCategory,status,dateTimeString);
          //use dueDate+dueTime as the child Ref
-         taskReference.child(dateTimeString).child(taskTitle).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+         taskReference.child(userId).child(taskDueDate).child(dateTimeString).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                if(task.isSuccessful())
