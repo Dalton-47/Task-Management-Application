@@ -238,9 +238,9 @@ public class Create_Task extends AppCompatActivity {
 
          //let us set status of the task
          String status="New";
+         String dateTimeString=taskDueDate+"T"+taskDueTime;
          //String title, String description, String startTimme, String dueDate, String category
-         Task_Class taskObj = new Task_Class(taskTitle,taskDescription,taskDueTime,taskDueDate,taskCategory,status);
-       String dateTimeString=taskDueDate+"T"+taskDueTime;
+         Task_Class taskObj = new Task_Class(taskTitle,taskDescription,taskDueTime,taskDueDate,taskCategory,status,dateTimeString);
          //use dueDate+dueTime as the child Ref
          taskReference.child(dateTimeString).child(taskTitle).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

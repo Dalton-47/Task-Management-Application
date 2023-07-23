@@ -9,6 +9,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +24,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class view_tasks_activity extends AppCompatActivity {
+public class view_tasks_activity extends AppCompatActivity implements Task_Adapter.OnSaveButtonClickListener{
+
+    @Override
+    public void onSaveButtonClicked() {
+        // Implement the refresh logic here
+        refreshActivity();
+    }
+
+    private void refreshActivity() {
+        // Implement your refresh logic here, e.g., updating the data and notifying the adapter
+        tasksAppointmentsList.clear();
+        taskAdapter.notifyDataSetChanged();
+
+    }
  Task_Adapter taskAdapter;
  String category;
  ArrayList<Task_Class> tasksAppointmentsList =new ArrayList<Task_Class>();
@@ -32,6 +46,7 @@ TextView textViewTaskHeading,textViewTaskTitleDialog;
     RadioGroup radioGroupOptions;
 
     Dialog taskStatusDialog,myTaskDialog;
+    Button btnSaveTaskStatusDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +58,8 @@ TextView textViewTaskHeading,textViewTaskTitleDialog;
         myTaskDialog.setContentView(R.layout.dialog_task_status_layout);
         textViewTaskTitleDialog = (TextView)  myTaskDialog.findViewById(R.id.textViewDialogTaskTitle);
         radioGroupOptions = (RadioGroup) myTaskDialog.findViewById(R.id.radioGroupOptions);
+        btnSaveTaskStatusDialog =(Button) myTaskDialog.findViewById(R.id.buttonDialogSaveStatus);
+
 
         Intent intent =getIntent();
         category=getIntent().getStringExtra("category");
@@ -53,7 +70,7 @@ TextView textViewTaskHeading,textViewTaskTitleDialog;
         RecyclerView taskRecyclerView=(RecyclerView)  this.findViewById(R.id.recyclerViewTasks);
 
         //Initializing the Task_Adapter with parameters that will be passed to the class
-        taskAdapter = new Task_Adapter(this,textViewTaskTitleDialog,myTaskDialog,radioGroupOptions);
+        taskAdapter = new Task_Adapter(this,textViewTaskTitleDialog,myTaskDialog,radioGroupOptions,btnSaveTaskStatusDialog,this);
         taskRecyclerView.setAdapter(taskAdapter);
 
         LinearLayoutManager linearLayout=new LinearLayoutManager(this);
@@ -113,6 +130,8 @@ TextView textViewTaskHeading,textViewTaskTitleDialog;
                  //   relativeLayoutNoAppointments.setVisibility(View.VISIBLE);
                     //Toast.makeText(Doctor_View_Appointments_NEW.this, "No New Appointments Today", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
 
             @Override

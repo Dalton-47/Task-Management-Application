@@ -9,18 +9,29 @@ public class Task_Class {
     String category;
     String status;
 
+    String dateTime;
+
     public Task_Class() {
     }
 
-    public Task_Class(String title, String description, String dueTime, String dueDate, String category, String status) {
+
+    public Task_Class(String title, String description, String dueTime, String dueDate, String category, String status, String dateTime) {
         this.title = title;
         this.description = description;
         this.dueTime = dueTime;
         this.dueDate = dueDate;
         this.category = category;
         this.status = status;
+        this.dateTime = dateTime;
     }
 
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
     public String getStatus() {
         return status;
     }
