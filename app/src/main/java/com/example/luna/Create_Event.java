@@ -194,9 +194,9 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
                             myDay=Integer.toString(dayOfMonth);
                         }
 
-                        textViewDate.setText(myDay + "-" + myMonth + "-" + year);
+                        textViewDate.setText(year +"-"+ myMonth +"-"+ myDay);
 
-                        eventDueDate = myDay + myMonth + Integer.toString(year);
+                        eventDueDate = year +"-"+ myMonth +"-"+ myDay;
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -412,9 +412,10 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
                     if (task.isSuccessful()) {
                         //event data will be saved successfully
                         progressBar.setVisibility(View.GONE);
-                        Toast.makeText(Create_Event.this, "Event Saved Successfully", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(Create_Event.this, "Event Saved Successfully", Toast.LENGTH_SHORT).show();
 
-                        Intent myIntent = new Intent(Create_Event.this, Home_Page.class);
+                        Intent myIntent = new Intent(Create_Event.this, APIMainActivity.class);
+                        myIntent.putExtra("data_object", newEvent);
                         startActivity(myIntent);
                         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                         finish();

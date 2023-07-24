@@ -25,7 +25,6 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.apache.ApacheHttpTransport;
 //import com.google.api.client.http.apache.v2.ApacheHttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.ExponentialBackOff;
@@ -58,6 +57,7 @@ public class APIMainActivity extends Activity {
     static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
     private static final String PREF_ACCOUNT_NAME = "accountName";
     private static final String[] SCOPES = {CalendarScopes.CALENDAR_READONLY, CalendarScopes.CALENDAR };
+    Event_Class myData;
 
 
     /**
@@ -67,6 +67,9 @@ public class APIMainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+         myData = (Event_Class)  intent.getSerializableExtra("data_object");
 
        // clearAuthorizationData();
 
@@ -218,8 +221,8 @@ public class APIMainActivity extends Activity {
         });
     }
 
-    public void addCalendarEvent() {
-        new CreateEventTask(mService,APIMainActivity.this).execute();
+    public void addCalendarEvent(Event_Class myData) {
+        new CreateEventTask(mService,APIMainActivity.this,myData).execute();
     }
 
     /**
@@ -242,8 +245,8 @@ public class APIMainActivity extends Activity {
                     mResultsText.setText(TextUtils.join("\n\n", dataStrings));
 
                     //create new tASK
-                   addCalendarEvent();
-                   // Toast.makeText(APIMainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                   addCalendarEvent(myData);
+                   Toast.makeText(APIMainActivity.this, "Event Created Successfully", Toast.LENGTH_SHORT).show();
                 }
             }
         });

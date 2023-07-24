@@ -1,6 +1,8 @@
 package com.example.luna;
 
-public class Event_Class {
+import java.io.Serializable;
+
+public class Event_Class implements Serializable {
     String title;
     String description;
     String dueDate;

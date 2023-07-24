@@ -502,7 +502,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view2" />
 
     <ImageView
-        android:id="@+id/imageView21"
+        android:id="@+id/imageViewGoogleCalendar"
         android:layout_width="317dp"
         android:layout_height="230dp"
         android:layout_marginTop="-25dp"
