@@ -21,7 +21,7 @@
         android:layout_width="320dp"
         android:layout_height="200dp"
         android:layout_marginTop="220dp"
-        android:background="@drawable/task_home_page_background"
+        android:background="@drawable/rounded_green_background"
         android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,13 +73,13 @@
 
     <View
         android:id="@+id/view9"
-        android:layout_width="250dp"
+        android:layout_width="330dp"
         android:layout_height="10dp"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/textview_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewSearchTask" />
 
     <View
         android:id="@+id/viewHomeUserProfile"
@@ -87,7 +87,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_brown_square"
+        android:background="@drawable/circular_view"
         android:elevation="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view" />
@@ -170,10 +170,10 @@
         android:id="@+id/imageView2"
         android:layout_width="75dp"
         android:layout_height="68dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/add_new"
+        android:background="@drawable/baseline_library_add_24"
         android:elevation="5.1dp"
+        app:layout_constraintEnd_toEndOf="@+id/viewNewTask"
         app:layout_constraintStart_toStartOf="@+id/viewNewTask"
         app:layout_constraintTop_toTopOf="@+id/viewNewTask" />
 
@@ -181,10 +181,10 @@
         android:id="@+id/imageView4"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/search_new"
+        android:background="@drawable/baseline_manage_search_24"
         android:elevation="5.1dp"
+        app:layout_constraintEnd_toEndOf="@+id/viewSearchTask"
         app:layout_constraintStart_toStartOf="@+id/viewSearchTask"
         app:layout_constraintTop_toTopOf="@+id/viewSearchTask" />
 
@@ -192,10 +192,10 @@
         android:id="@+id/imageView6"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/data_report"
+        android:background="@drawable/analytics_24"
         android:elevation="5.1dp"
+        app:layout_constraintEnd_toEndOf="@+id/viewMyTrack"
         app:layout_constraintStart_toStartOf="@+id/viewMyTrack"
         app:layout_constraintTop_toTopOf="@+id/viewMyTrack" />
 
@@ -216,10 +216,10 @@
         android:id="@+id/imageView3"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/clipboard"
+        android:background="@drawable/baseline_assignment_24"
         android:elevation="5.1dp"
+        app:layout_constraintEnd_toEndOf="@+id/viewMyTasks"
         app:layout_constraintStart_toStartOf="@+id/viewMyTasks"
         app:layout_constraintTop_toTopOf="@+id/viewMyTasks" />
 
@@ -238,7 +238,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#8AC0C0C0"
-        android:elevation="5.1dp"
+        android:elevation="5.5dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -463,4 +463,53 @@
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view10"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="-30dp"
+        android:layout_marginTop="-30dp"
+        android:background="@drawable/circular_view"
+        android:elevation="5.2dp"
+        app:layout_constraintStart_toEndOf="@+id/viewHomeUserProfile"
+        app:layout_constraintTop_toBottomOf="@+id/viewHomeUserProfile" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/baseline_photo_camera_24"
+        android:elevation="5.3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view10"
+        app:layout_constraintEnd_toEndOf="@+id/view10"
+        app:layout_constraintStart_toStartOf="@+id/view10"
+        app:layout_constraintTop_toTopOf="@+id/view10" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:drawableRight="@drawable/baseline_arrow_right_alt_24"
+        android:drawablePadding="5dp"
+        android:elevation="5.1dp"
+        android:text="Go To Events"
+        android:textColor="#663300"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2" />
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="317dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="-25dp"
+        android:background="@drawable/brown_man"
+        android:elevation="5.01dp"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

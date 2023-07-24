@@ -156,6 +156,11 @@ ConstraintLayout constraintLayoutTaskNotFound;
                  //   relativeLayoutNoAppointments.setVisibility(View.VISIBLE);
                     //Toast.makeText(Doctor_View_Appointments_NEW.this, "No New Appointments Today", Toast.LENGTH_SHORT).show();
                 }
+                else
+                {
+                //    constraintLayoutTaskNotFound.setVisibility(View.GONE);
+
+                }
 
 
             }

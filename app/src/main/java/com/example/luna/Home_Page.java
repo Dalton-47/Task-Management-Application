@@ -65,7 +65,7 @@ public class Home_Page extends AppCompatActivity {
                 // ImageViewer setImageURI() should not be used with regular URIs. So we are using Picasso
               //  view60.setBackground(getResources().getDrawable(R.drawable.white_background_circle));
                 Picasso.get().load(uri)
-                        .transform(new SquareTransformation() )
+                        .transform(new RoundedTransformation())
                         .into(imageViewUserProfileHome);
             }
             else

@@ -85,6 +85,14 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
 
+        // Initialize the dialog
+        mapDialog = new Dialog(this);
+        mapDialog.setContentView(R.layout.map_view_layout);
+
+
+
+
+
 
         textViewLocation = (TextView) this.findViewById(R.id.textViewEventLocation);
         textViewLocation.setOnClickListener(new View.OnClickListener() {

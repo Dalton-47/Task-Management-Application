@@ -2,6 +2,7 @@ package com.example.luna;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,11 +34,14 @@ public class Search_Task extends AppCompatActivity {
 
     Dialog datePickerDialog;
     String selectedDate;
+    ConstraintLayout constraintLayoutSearchTasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_task_activity);
+
+        constraintLayoutSearchTasks = (ConstraintLayout)  this.findViewById(R.id.constraintLayoutSearchTasks);
 
         FirebaseAuth myAuth=FirebaseAuth.getInstance();
         FirebaseUser currentUser=myAuth.getCurrentUser();
@@ -69,6 +73,7 @@ public class Search_Task extends AppCompatActivity {
 
                 // Now you can use the updated selectedDate as needed
                 // For example, you can call the function to fetch user tasks for the selected date:
+                myTaskArrayList.clear();
                 getUserTasks();
             }
         });
@@ -98,12 +103,18 @@ public class Search_Task extends AppCompatActivity {
                     }
 
                 }
-                myTasks_adapter.setData(myTaskArrayList);
 
-                if(myTaskArrayList.size()==0)
+
+                if(myTaskArrayList.isEmpty())
                 {
-                   // relativeLayoutNoAppointments.setVisibility(View.VISIBLE);
-                    //Toast.makeText(Doctor_View_Appointments_NEW.this, "No New Appointments Today", Toast.LENGTH_SHORT).show();
+                    searchTaskRecyclerView.setVisibility(View.GONE);
+                    myTaskArrayList.clear();
+                    constraintLayoutSearchTasks.setVisibility(View.VISIBLE);
+                  }
+                else {
+                    searchTaskRecyclerView.setVisibility(View.VISIBLE);
+                    constraintLayoutSearchTasks.setVisibility(View.GONE);
+                    myTasks_adapter.setData(myTaskArrayList);
                 }
 
             }
