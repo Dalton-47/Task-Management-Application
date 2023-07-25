@@ -328,6 +328,7 @@ public class Create_Task extends AppCompatActivity {
                            //let us schedule notifications for users
 
                            // Schedule the notification 5 minutes before the task's due time
+                           //does not work for now...to be updated
                            String dateDueTimeString = taskDate + "T" + taskEndTime;
                            long dueTimeInMillis = getDueTimeInMillis(dateDueTimeString);
                            long reminderTimeInMillis = dueTimeInMillis - (5 * 60 * 1000);

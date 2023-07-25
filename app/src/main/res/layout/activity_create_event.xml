@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wooden_floor"
+    android:background="@drawable/wooden_background"
     tools:context=".Create_Event">
 
     <View
@@ -222,8 +222,8 @@
                         android:layout_marginTop="-6dp"
                         android:background="@drawable/textview_background"
                         android:drawableRight="@drawable/baseline_location_on_24"
-                        android:padding="8dp"
                         android:minHeight="48dp"
+                        android:padding="8dp"
                         android:textColor="#000000"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"

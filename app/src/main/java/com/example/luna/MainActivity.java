@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth userAuth;
     ProgressBar progressbar;
     FirebaseUser firebaseUser;
+    Button btnRegisterUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,16 @@ public class MainActivity extends AppCompatActivity {
 
         editTextLoginEmail = (EditText)  this.findViewById(R.id.editTextLoginEmail);
         editTextLoginPassword = (EditText)  this.findViewById(R.id.editTextLoginPassword);
+
+        btnRegisterUser = (Button)  this.findViewById(R.id.buttonRegisterUser);
+        btnRegisterUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(MainActivity.this, Registration_Page.class);
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+            }
+        });
 
         userAuth= FirebaseAuth.getInstance();
         // Get instance of the current user
