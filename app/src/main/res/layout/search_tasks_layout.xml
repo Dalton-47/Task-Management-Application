@@ -104,13 +104,13 @@
                         android:background="#663300"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
-                        android:text="Due Date"
+                        android:text="Task Date"
                         android:textColor="#E8F5E9"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewTaskDescription_SEARCH" />
 
                     <TextView
-                        android:id="@+id/textViewTaskDueTime_SEARCH"
+                        android:id="@+id/textViewTaskStartTime_SEARCH"
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="16dp"
@@ -131,7 +131,7 @@
                         android:background="#663300"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
-                        android:text="Due Time"
+                        android:text="Start Time"
                         android:textColor="#E8F5E9"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewTaskDueDate_SEARCH" />
@@ -142,10 +142,12 @@
                         android:layout_height="48dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="-6dp"
+                        android:layout_marginBottom="8dp"
                         android:background="@drawable/rounded_brown_square"
                         android:padding="8dp"
                         android:text="TextView"
                         android:textColor="#FFFDD0"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
@@ -161,7 +163,34 @@
                         android:text="Category"
                         android:textColor="#E8F5E9"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewTaskDueTime_SEARCH" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTaskEndTime_SEARCH" />
+
+                    <TextView
+                        android:id="@+id/textViewTaskEndTime_SEARCH"
+                        android:layout_width="300dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="-6dp"
+                        android:background="@drawable/rounded_brown_square"
+                        android:padding="8dp"
+                        android:text="TextView"
+                        android:textColor="#FFFDD0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="4dp"
+                        android:background="#663300"
+                        android:paddingLeft="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="End Time"
+                        android:textColor="#E8F5E9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTaskStartTime_SEARCH" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </RelativeLayout>

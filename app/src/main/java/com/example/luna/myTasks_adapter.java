@@ -24,15 +24,16 @@ public class myTasks_adapter extends RecyclerView.Adapter<myTasks_adapter.DataVi
 
     public class DataViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewTaskTitle,textViewTaskDescription,textViewTaskDueDate,textViewTaskDueTime,textViewTaskCategory;
+        TextView textViewTaskTitle,textViewTaskDescription,textViewTaskDueDate, textViewStartTime,textViewTaskEndTime,textViewTaskCategory;
 
         public DataViewHolder(@NonNull View itemView) {
               super(itemView);
             textViewTaskTitle  = (TextView)  itemView.findViewById(R.id.textViewTaskTitle_SEARCH);
             textViewTaskDescription  = (TextView)  itemView.findViewById(R.id.textViewTaskDescription_SEARCH);
-            textViewTaskDueTime  = (TextView)  itemView.findViewById(R.id.textViewTaskDueTime_SEARCH);
+            textViewStartTime = (TextView)  itemView.findViewById(R.id.textViewTaskStartTime_SEARCH);
             textViewTaskDueDate  = (TextView)  itemView.findViewById(R.id.textViewTaskDueDate_SEARCH);
             textViewTaskCategory  = (TextView)  itemView.findViewById(R.id.textViewTaskCategory_SEARCH);
+            textViewTaskEndTime = (TextView)  itemView.findViewById(R.id.textViewTaskEndTime_SEARCH);
 
 
         }
@@ -53,9 +54,10 @@ public class myTasks_adapter extends RecyclerView.Adapter<myTasks_adapter.DataVi
 
         holder.textViewTaskTitle.setText(myTaskObj.getTitle());
         holder.textViewTaskDescription.setText(myTaskObj.getDescription());
-        holder.textViewTaskDueTime.setText(myTaskObj.getStartTime());
+        holder.textViewStartTime.setText(myTaskObj.getStartTime());
         holder.textViewTaskDueDate.setText(myTaskObj.getDueDate());
         holder.textViewTaskCategory.setText(myTaskObj.getCategory());
+        holder.textViewTaskEndTime.setText(myTaskObj.getEndTime());
 
 
     }

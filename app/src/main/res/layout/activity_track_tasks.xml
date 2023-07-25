@@ -8,9 +8,9 @@
     tools:context=".Track_Tasks_Activity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="340dp"
-        android:layout_height="555dp"
-        android:background="@drawable/white_rounded_background"
+        android:layout_width="365dp"
+        android:layout_height="591dp"
+        android:background="@drawable/rounded_green_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,10 @@
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         </com.github.mikephil.charting.charts.PieChart>
 
@@ -28,10 +31,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/white_rounded_background"
+            android:background="@drawable/textview_background"
             android:elevation="2dp"
-            android:padding="8dp"
-            android:text="Total Tasks Created = 0"
+            android:padding="10dp"
+            android:text="Check Internet Connection!"
             android:textColor="#663300"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"

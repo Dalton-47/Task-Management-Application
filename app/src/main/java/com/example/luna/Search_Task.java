@@ -54,6 +54,10 @@ public class Search_Task extends AppCompatActivity {
         LinearLayoutManager myLayout=new LinearLayoutManager(this);
         searchTaskRecyclerView.setLayoutManager(myLayout);
 
+        // Add item decoration to the RecyclerView
+        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.item_spacing); // Adjust the spacing size as per your requirement
+        searchTaskRecyclerView.addItemDecoration(new RecyclerViewItemDecorationClass(this, spacingInPixels) );
+
         // Get the current date to set as the default selected date in the DatePicker
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);

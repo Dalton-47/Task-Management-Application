@@ -66,6 +66,7 @@ public class Create_Event extends AppCompatActivity implements OnMapReadyCallbac
             "Select Category",
             "Work",
             "Fitness",
+            "School",
             "Finance",
             "Personal",
 

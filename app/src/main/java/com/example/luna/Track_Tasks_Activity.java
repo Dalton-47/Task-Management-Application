@@ -109,11 +109,12 @@ public class Track_Tasks_Activity extends AppCompatActivity {
 
 
         PieDataSet dataSet = new PieDataSet(entries, "");
-        dataSet.setColors(Color.GREEN, Color.RED, Color.YELLOW,Color.BLUE,Color.MAGENTA);
+        dataSet.setColors(Color.GREEN, Color.BLUE, Color.YELLOW, Color.RED, Color.parseColor("#800080"));
 
         PieData pieData = new PieData(dataSet);
         pieData.setDrawValues(true); //set to true if you want numbers and values to be displayed on the pie chart
-        pieData.setValueTextSize(12f);
+        pieData.setValueTextSize(18f);
+      //  pieData.setValueTextColor(Color.WHITE);
 
         chart.setData(pieData);
         chart.invalidate();

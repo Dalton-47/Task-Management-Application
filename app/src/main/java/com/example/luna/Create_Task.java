@@ -1,6 +1,8 @@
 package com.example.luna;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +28,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class Create_Task extends AppCompatActivity {
@@ -49,6 +55,7 @@ public class Create_Task extends AppCompatActivity {
            "Work",
            "Fitness",
            "Finance",
+           "School",
            "Personal",
            "Shared Tasks"
 
@@ -295,28 +302,42 @@ public class Create_Task extends AppCompatActivity {
          //let us set status of the task
          String status="New";
          String dateTimeString= taskDate +"T"+ taskStartTime;
+         String dateTimeNew = dateTimeString +taskEndTime;
+         //String title, String description, String startTime, String dueDate, String category, String status, String dateTime, String endTime) {
+
          //String title, String description, String startTimme, String dueDate, String category
-         Task_Class taskObj = new Task_Class(taskTitle,taskDescription, taskStartTime,taskEndTime, taskDate,taskCategory,status,dateTimeString);
+         Task_Class taskObj = new Task_Class(taskTitle,taskDescription, taskStartTime,taskDate, taskCategory,status,dateTimeString,taskEndTime);
          //use dueDate+dueTime as the child Ref
-         taskReference.child(userId).child(taskDate).child(dateTimeString).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+         taskReference.child(userId).child(taskDate).child(dateTimeNew).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                if(task.isSuccessful())
                {
-                  createdTaskRef.child(userId).child(dateTimeString).setValue(taskObj);
+                  //save to a node for getting all user tasks created
+                    createdTaskRef.child(userId).child(dateTimeNew).setValue(taskObj);
 
                   //let us save the data to tasks that are categorized in the database
                   DatabaseReference categoryRef;
                   categoryRef = FirebaseDatabase.getInstance().getReference("Categorised Tasks");
 
-                  categoryRef.child(userId).child(taskCategory).child(dateTimeString).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+                  categoryRef.child(userId).child(taskCategory).child(dateTimeNew).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
                      @Override
                      public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())
                         {
+                           //let us schedule notifications for users
+
+                           // Schedule the notification 5 minutes before the task's due time
+                           String dateDueTimeString = taskDate + "T" + taskEndTime;
+                           long dueTimeInMillis = getDueTimeInMillis(dateDueTimeString);
+                           long reminderTimeInMillis = dueTimeInMillis - (5 * 60 * 1000);
+
+                           if (reminderTimeInMillis > System.currentTimeMillis()) {
+                              scheduleTaskReminder(reminderTimeInMillis, taskTitle);
+                              Toast.makeText(Create_Task.this, "Task Saved Successfully", Toast.LENGTH_SHORT).show();
+                           }
                            //task data will be saved successfully
                            progressBar.setVisibility(View.GONE);
-                           Toast.makeText(Create_Task.this, "Task Saved Successfully", Toast.LENGTH_SHORT).show();
 
                            Intent myIntent = new Intent(Create_Task.this, Home_Page.class);
                            startActivity(myIntent);
@@ -339,6 +360,39 @@ public class Create_Task extends AppCompatActivity {
             }
          });
 
+      }
+   }
+
+   private void scheduleTaskReminder(long reminderTimeInMillis, String taskTitle) {
+      Intent intent = new Intent(this, TaskReminderReceiver.class);
+      intent.putExtra("taskTitle", taskTitle);
+      PendingIntent pendingIntent = PendingIntent.getBroadcast(
+              this,
+              0,
+              intent,
+              PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE // Add FLAG_IMMUTABLE flag
+      );
+
+      AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+      alarmManager.set(AlarmManager.RTC_WAKEUP, reminderTimeInMillis, pendingIntent);
+   }
+
+
+   private long getDueTimeInMillis(String dateTimeString) {
+      // Define the date-time format to match your input string
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+
+      try {
+         // Parse the date-time string to a Date object
+         Date dueDate = sdf.parse(dateTimeString);
+
+         // Get the time in milliseconds from the Date object
+        // Toast.makeText(this, , Toast.LENGTH_SHORT).show();
+         assert dueDate != null;
+         return dueDate.getTime();
+      } catch (ParseException e) {
+         e.printStackTrace();
+         return 0; // Return 0 if there's an error in parsing the date-time string
       }
    }
 

@@ -77,7 +77,7 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
 
     public static class DataViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewTaskProgress, textViewTaskTitle, textViewTaskDescription, textViewTaskDueTime, textViewTaskDueDate;
+        TextView textViewTaskProgress, textViewTaskTitle, textViewTaskDescription, textViewTaskStartTime,textViewTaskEndTime, textViewTaskDueDate;
         Button btnUpdateTask;
 
 
@@ -89,7 +89,8 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
             textViewTaskTitle =(TextView)  itemView.findViewById(R.id.textViewTaskTitle_REC);
             textViewTaskDescription = (TextView)  itemView.findViewById(R.id.textViewTaskDescription_REC);
             textViewTaskDueDate = (TextView)  itemView.findViewById(R.id.textViewTaskDueDate_REC);
-            textViewTaskDueTime = (TextView)  itemView.findViewById(R.id.textViewTaskDueTime_REC);
+            textViewTaskStartTime = (TextView)  itemView.findViewById(R.id.textViewTaskStartTime_REC);
+            textViewTaskEndTime = (TextView)   itemView.findViewById(R.id.textViewTaskEndTime_REC );
 
 
 
@@ -113,7 +114,8 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
         holder.textViewTaskTitle.setText(taskObj.getTitle());
         holder.textViewTaskDescription.setText(taskObj.getDescription());
         holder.textViewTaskDueDate.setText(taskObj.getDueDate());
-        holder.textViewTaskDueTime.setText(taskObj.getStartTime());
+        holder.textViewTaskStartTime.setText(taskObj.getStartTime());
+        holder.textViewTaskEndTime.setText(taskObj.getEndTime());
 
 
 
@@ -135,7 +137,11 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
                       FirebaseUser currentUser = mAuth.getCurrentUser();
                       assert currentUser != null;
                      String userId = currentUser.getUid();
-                      DatabaseReference taskRef = FirebaseDatabase.getInstance().getReference("Categorised Tasks").child(userId).child(taskObj.getCategory()).child(taskObj.getDateTime());
+
+                      String newDateTime = taskObj.getDateTime()+taskObj.getEndTime();
+
+
+                      DatabaseReference taskRef = FirebaseDatabase.getInstance().getReference("Categorised Tasks").child(userId).child(taskObj.getCategory()).child(newDateTime);
 
 
                       if(newStatus!="")
@@ -151,16 +157,18 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
                                           //check if task was removed from list of tasks
                                           Toast.makeText(myContext, "Updated status successfully", Toast.LENGTH_SHORT).show();
 
-                                          //we then create a new Data node for the task and save it there
-                                          DatabaseReference removedTaskRef = FirebaseDatabase.getInstance().getReference("Task Progress").child(userId).child(newStatus).child(taskObj.getDateTime());
 
+                                           //we then create a new Data node for the task and save it there
+                                          DatabaseReference removedTaskRef = FirebaseDatabase.getInstance().getReference("Task Progress").child(userId).child(newStatus).child(newDateTime);
 
-                                          Task_Class newTaskObj = new Task_Class(taskObj.getTitle(), taskObj.getDescription(), taskObj.getStartTime(),taskObj.getDueDate(),taskObj.getCategory(),newStatus, taskObj.getDateTime());
+//String title, String description, String startTime, String dueDate, String category, String status, String dateTime, String endTime
+                                          Task_Class newTaskObj = new Task_Class(taskObj.getTitle(), taskObj.getDescription(), taskObj.getStartTime(),taskObj.getDueDate(), taskObj.getCategory(),taskObj.getStatus(), taskObj.getDateTime(), taskObj.getEndTime());
                                           removedTaskRef.setValue(newTaskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
                                               @Override
                                               public void onComplete(@NonNull Task<Void> task) {
 
                                                   // Redirect user to main activity
+                                                  //call interface with method to redirect user to home page
                                                   if (interface_adapter != null) {
                                                       interface_adapter.onSaveInterface();
                                                   }

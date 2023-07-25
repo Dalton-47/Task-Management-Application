@@ -156,11 +156,11 @@
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="85dp"
+                        android:layout_marginTop="16dp"
                         android:popupBackground="@drawable/textview_background"
                         android:textAlignment="center"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewCreateTaskStartTime" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewCreateTaskEndTime" />
 
                     <Button
                         android:id="@+id/buttonCreateTaskSave"
