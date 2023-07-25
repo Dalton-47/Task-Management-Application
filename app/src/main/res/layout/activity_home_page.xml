@@ -506,7 +506,7 @@
         android:layout_width="317dp"
         android:layout_height="230dp"
         android:layout_marginTop="-25dp"
-        android:background="@drawable/brown_man"
+        android:background="@drawable/brown_calendar_guy"
         android:elevation="5.01dp"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintStart_toStartOf="@+id/view2"

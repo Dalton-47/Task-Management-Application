@@ -4,26 +4,38 @@ public class Task_Class {
 
     String title;
     String description;
-    String dueTime;
+    String startTime;
     String dueDate;
     String category;
     String status;
 
     String dateTime;
 
+    String endTime;
+
     public Task_Class() {
+
     }
 
-
-    public Task_Class(String title, String description, String dueTime, String dueDate, String category, String status, String dateTime) {
+    public Task_Class(String title, String description, String startTime, String dueDate, String category, String status, String dateTime, String endTime) {
         this.title = title;
         this.description = description;
-        this.dueTime = dueTime;
+        this.startTime = startTime;
         this.dueDate = dueDate;
         this.category = category;
         this.status = status;
         this.dateTime = dateTime;
+        this.endTime = endTime;
     }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
 
     public String getDateTime() {
         return dateTime;
@@ -57,12 +69,12 @@ public class Task_Class {
         this.description = description;
     }
 
-    public String getDueTime() {
-        return dueTime;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setDueTime(String dueTime) {
-        this.dueTime = dueTime;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
     public String getDueDate() {

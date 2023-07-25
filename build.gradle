@@ -1,12 +1,17 @@
 buildscript {
     repositories {
+        maven { url 'https://jitpack.io' }
         google()
         mavenCentral()
         jcenter()
-        // Add other repositories as needed
+           // Add other repositories as needed
     }
+
+
+
     dependencies {
         classpath 'com.google.gms:google-services:4.3.15'
+
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {

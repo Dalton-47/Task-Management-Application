@@ -33,14 +33,14 @@ public class Create_Task extends AppCompatActivity {
 
    Spinner spinnerTaskCategory;
    EditText  editTextTaskDescription, editTextTaskTitle;
-   TextView textViewDueDate, textViewDueTime;
+   TextView textViewTaskDate, textViewStartTime, textViewEndTime;
   ProgressBar progressBar;
-   DatabaseReference taskReference;
+   DatabaseReference taskReference,createdTaskRef;
    Button btnSaveTask;
    private DatePickerDialog datePickerDialog;
    private TimePickerDialog timePickerDialog;
 
-   private String taskTitle = "", taskDescription = "", taskDueDate = "", taskDueTime = "", taskCategory = "";
+   private String taskTitle = "", taskDescription = "", taskDate = "", taskStartTime = "", taskEndTime="" , taskCategory = "";
 
    FirebaseAuth userAuth;
 
@@ -66,17 +66,20 @@ public class Create_Task extends AppCompatActivity {
       userId = user.getUid();
 
       taskReference = FirebaseDatabase.getInstance().getReference("Tasks");
+      createdTaskRef = FirebaseDatabase.getInstance().getReference("Created Tasks");
+
 
       editTextTaskTitle = (EditText)  this.findViewById(R.id.editTextCreateTaskTitle);
       editTextTaskDescription = (EditText)  this.findViewById(R.id.editTextCreateTaskDescription);
 
-      textViewDueDate = (TextView)  this.findViewById(R.id.textViewCreateTaskDate);
-      textViewDueTime = (TextView)  this.findViewById(R.id.textViewCreateTaskStartTime);
+      textViewTaskDate = (TextView)  this.findViewById(R.id.textViewCreateTaskDate);
+      textViewStartTime = (TextView)  this.findViewById(R.id.textViewCreateTaskStartTime);
+      textViewEndTime = (TextView)  this.findViewById(R.id.textViewCreateTaskEndTime);
 
       progressBar = (ProgressBar)  this.findViewById(R.id.progressBarSaveTaskNew);
 
       //setting time
-      textViewDueTime.setOnClickListener(new View.OnClickListener() {
+      textViewStartTime.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {
             // Create a Calendar instance to get the current time
@@ -108,9 +111,57 @@ public class Create_Task extends AppCompatActivity {
                           }
 
                           //datetime format 2023-07-21T09:00:00-07:00
-                          textViewDueTime.setText(myHour + ":" + myMinute + " hours");
+                          textViewStartTime.setText(myHour + ":" + myMinute + " hours");
 
-                          taskDueTime = myHour + ":" + myMinute+":00";
+                          taskStartTime = myHour + ":" + myMinute+":00";
+
+                       }
+                    },
+                    currentHour,
+                    currentMinute,
+                    true // true if you want to use the 24-hour format, false for 12-hour format
+            );
+
+            // Show the TimePickerDialog
+            timePickerDialog.show();
+         }
+      });
+
+      textViewEndTime.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+            // Create a Calendar instance to get the current time
+            Calendar calendar = Calendar.getInstance();
+            int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+            int currentMinute = calendar.get(Calendar.MINUTE);
+
+            // Create a TimePickerDialog and set the initial time
+            TimePickerDialog timePickerDialog = new TimePickerDialog(
+                    Create_Task.this,
+                    new TimePickerDialog.OnTimeSetListener() {
+                       @Override
+                       public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                          // Handle the selected time (hourOfDay and minute)
+                          // This method will be called when the user sets the time
+                          // You can perform any action with the selected time here
+                          String myHour, myMinute;
+                          //if minutes are less than 10
+                          if (minute < 10) {
+                             myMinute = "0" + Integer.toString(minute);
+                          } else {
+                             myMinute = Integer.toString(minute);
+                          }
+
+                          if (hourOfDay < 10) {
+                             myHour = "0" + Integer.toString(hourOfDay);
+                          } else {
+                             myHour = Integer.toString(hourOfDay);
+                          }
+
+                          //datetime format 2023-07-21T09:00:00-07:00
+                          textViewEndTime.setText(myHour + ":" + myMinute + " hours");
+
+                          taskEndTime = myHour + ":" + myMinute+":00";
 
                        }
                     },
@@ -126,7 +177,7 @@ public class Create_Task extends AppCompatActivity {
 
 
       //setting Date
-      textViewDueDate.setOnClickListener(new View.OnClickListener() {
+      textViewTaskDate.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {
             final Calendar calendar = Calendar.getInstance();
@@ -159,9 +210,9 @@ public class Create_Task extends AppCompatActivity {
                   }
 
                   //datetime format 2023-07-21T09:00:00-07:00
-                  textViewDueDate.setText(myDay + "-" + myMonth + "-" + year);
+                  textViewTaskDate.setText(myDay + "-" + myMonth + "-" + year);
                   //taskDueDate = myDay + myMonth + Integer.toString(year);
-                  taskDueDate = Integer.toString(year) +"-"+myMonth+"-"+myDay;
+                  taskDate = Integer.toString(year) +"-"+myMonth+"-"+myDay;
 
 
                }
@@ -226,11 +277,16 @@ public class Create_Task extends AppCompatActivity {
       } else if (taskDescription.isEmpty()) {
          editTextTaskDescription.setError("Cannot be blank!");
          editTextTaskDescription.requestFocus();
-      } else if (taskDueTime.isEmpty()) {
-         textViewDueTime.setError("Cannot be blank!");
-         textViewDueTime.requestFocus();
-      } else if (taskDueDate.isEmpty()) {
-         textViewDueDate.setError("Cannot be blank");
+      } else if (taskStartTime.isEmpty()) {
+         textViewStartTime.setError("Cannot be blank!");
+         textViewStartTime.requestFocus();
+      } else if(taskEndTime.isEmpty())
+      {
+         textViewEndTime.setError("Cannot be blank!");
+         textViewEndTime.requestFocus();
+      }
+      else if (taskDate.isEmpty()) {
+         textViewTaskDate.setError("Cannot be blank");
       } else if (taskCategory.isEmpty()) {
          Toast.makeText(this, "Choose Task Category", Toast.LENGTH_SHORT).show();
       } else {
@@ -238,15 +294,16 @@ public class Create_Task extends AppCompatActivity {
 
          //let us set status of the task
          String status="New";
-         String dateTimeString=taskDueDate+"T"+taskDueTime;
+         String dateTimeString= taskDate +"T"+ taskStartTime;
          //String title, String description, String startTimme, String dueDate, String category
-         Task_Class taskObj = new Task_Class(taskTitle,taskDescription,taskDueTime,taskDueDate,taskCategory,status,dateTimeString);
+         Task_Class taskObj = new Task_Class(taskTitle,taskDescription, taskStartTime,taskEndTime, taskDate,taskCategory,status,dateTimeString);
          //use dueDate+dueTime as the child Ref
-         taskReference.child(userId).child(taskDueDate).child(dateTimeString).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+         taskReference.child(userId).child(taskDate).child(dateTimeString).setValue(taskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                if(task.isSuccessful())
                {
+                  createdTaskRef.child(userId).child(dateTimeString).setValue(taskObj);
 
                   //let us save the data to tasks that are categorized in the database
                   DatabaseReference categoryRef;

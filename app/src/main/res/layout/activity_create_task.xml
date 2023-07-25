@@ -156,7 +156,7 @@
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="85dp"
                         android:popupBackground="@drawable/textview_background"
                         android:textAlignment="center"
                         app:layout_constraintStart_toStartOf="parent"
@@ -186,6 +186,33 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewCreateTaskEndTime"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="-6dp"
+                        android:background="@drawable/textview_background"
+                        android:drawableRight="@drawable/baseline_end_timer_off_24"
+                        android:padding="8dp"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#FFFDD0"
+                        android:paddingLeft="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="End Time"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewCreateTaskStartTime" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </RelativeLayout>

@@ -23,6 +23,9 @@
         android:theme="@style/Theme.Luna"
         tools:targetApi="31">
         <activity
+            android:name=".Track_Tasks_Activity"
+            android:exported="false" />
+        <activity
             android:name=".UploadPicture_Activity"
             android:exported="false" />
         <activity

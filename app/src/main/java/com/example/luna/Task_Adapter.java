@@ -113,7 +113,7 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
         holder.textViewTaskTitle.setText(taskObj.getTitle());
         holder.textViewTaskDescription.setText(taskObj.getDescription());
         holder.textViewTaskDueDate.setText(taskObj.getDueDate());
-        holder.textViewTaskDueTime.setText(taskObj.getDueTime());
+        holder.textViewTaskDueTime.setText(taskObj.getStartTime());
 
 
 
@@ -155,7 +155,7 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.DataViewHold
                                           DatabaseReference removedTaskRef = FirebaseDatabase.getInstance().getReference("Task Progress").child(userId).child(newStatus).child(taskObj.getDateTime());
 
 
-                                          Task_Class newTaskObj = new Task_Class(taskObj.getTitle(), taskObj.getDescription(), taskObj.getDueTime(),taskObj.getDueDate(),taskObj.getCategory(),newStatus, taskObj.getDateTime());
+                                          Task_Class newTaskObj = new Task_Class(taskObj.getTitle(), taskObj.getDescription(), taskObj.getStartTime(),taskObj.getDueDate(),taskObj.getCategory(),newStatus, taskObj.getDateTime());
                                           removedTaskRef.setValue(newTaskObj).addOnCompleteListener(new OnCompleteListener<Void>() {
                                               @Override
                                               public void onComplete(@NonNull Task<Void> task) {
